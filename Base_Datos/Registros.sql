@@ -1,63 +1,99 @@
 INSERT INTO USUARIO (CEDULA,NOMBRE,APELLIDO,CONTRASENA,CORREO,TIPO_USUARIO,ESTADO,TELEFONO,GENERO) VALUES
-(100000001,'Ana','Lopez','pass1','ana1@mail.com','ADMINISTRADOR','ACTIVO',300000001,'FEMENINO'),
-(100000002,'Luis','Martinez','pass2','luis2@mail.com','ADMINISTRADOR','ACTIVO',300000002,'MASCULINO'),
-(100000003,'María','Gomez','pass3','maria3@mail.com','CAJERO','INACTIVO',300000003,'FEMENINO'),
-(100000004,'Juan','Rodriguez','pass4','juan4@mail.com','CAJERO','ACTIVO',300000004,'MASCULINO'),
-(100000005,'Carla','Fernandez','passs5','carla5@mail.com','CLIENTE','ACTIVO',300000005,'FEMENINO'),
-(100000006,'Pedro','Vargas','pass6','pedro6@mail.com','CLIENTE','ACTIVO',300000006,'MASCULINO'),
-(100000007,'Lucia','Ramirez','pass7','lucia7@mail.com','CLIENTE','INACTIVO',300000007,'FEMENINO'),
-(100000008,'Miguel','Torres','pass8','miguel8@mail.com','CLIENTE','ACTIVO',300000008,'MASCULINO'),
-(100000009,'Elena','Castro','pass9','elena9@mail.com','CLIENTE','ACTIVO',300000009,'FEMENINO'),
-(100000010,'Diego','Santos','pass10','diego10@mail.com','CLIENTE','ACTIVO',300000010,'MASCULINO'),
-(100000011,'Sofia','Mendez','pass11','sofia11@mail.com','CLIENTE','ACTIVO',300000011,'FEMENINO'),
-(100000012,'Raul','Pereira','pass12','raul12@mail.com','CLIENTE','ACTIVO',300000012,'MASCULINO'),
-(100000013,'Laura','Nunez','pass13','laura13@mail.com','CLIENTE','ACTIVO',300000013,'FEMENINO'),
-(100000014,'Carlos','Rojas','pass14','carlos14@mail.com','CLIENTE','ACTIVO',300000014,'MASCULINO'),
-(100000015,'Marta','Silva','pass15','marta15@mail.com','CLIENTE','ACTIVO',300000015,'FEMENINO'),
-(100000016,'Andrés','Flores','pass16','andres16@mail.com','CLIENTE','ACTIVO',300000016,'MASCULINO'),
-(100000017,'Patricia','Ruiz','pass17','patricia17@mail.com','CLIENTE','ACTIVO',300000017,'FEMENINO'),
-(100000018,'Fernando','Morales','pass18','fernando18@mail.com','CLIENTE','ACTIVO',300000018,'MASCULINO'),
-(100000019,'Gabriela','Ortega','pass19','gabriela19@mail.com','CLIENTE','ACTIVO',300000019,'FEMENINO'),
-(100000020,'Jorge','Navarro','pass20','jorge20@mail.com','CLIENTE','ACTIVO',300000020,'MASCULINO'),
-(100000021,'Isabel','Reyes','pass21','isabel21@mail.com','CLIENTE','ACTIVO',300000021,'FEMENINO');
+(102345678,'Ana','Lopez','pass1','ana1@mail.com','ADMINISTRADOR','ACTIVO',3101234567,'FEMENINO'),
+(109876543,'Luis','Martinez','pass2','luis2@mail.com','ADMINISTRADOR','ACTIVO',3159876543,'MASCULINO'),
+(103456789,'María','Gomez','pass3','maria3@mail.com','CAJERO','INACTIVO',3124567890,'FEMENINO'),
+(108765432,'Juan','Rodriguez','pass4','juan4@mail.com','CAJERO','ACTIVO',3116543210,'MASCULINO'),
+(100112233,'Carla','Fernandez','pass5','carla5@mail.com','CLIENTE','ACTIVO',3101122334,'FEMENINO'),
+(104567890,'Pedro','Vargas','pass6','pedro6@mail.com','CLIENTE','ACTIVO',3182345678,'MASCULINO'),
+(107654321,'Lucia','Ramirez','pass7','lucia7@mail.com','CLIENTE','INACTIVO',3198765432,'FEMENINO'),
+(105678901,'Miguel','Torres','pass8','miguel8@mail.com','CLIENTE','ACTIVO',3145678901,'MASCULINO'),
+(106789012,'Elena','Castro','pass9','elena9@mail.com','CLIENTE','ACTIVO',3167890123,'FEMENINO'),
+(101234567,'Diego','Santos','pass10','diego10@mail.com','CLIENTE','ACTIVO',3176543210,'MASCULINO'),
+(100998877,'Sofia','Mendez','pass11','sofia11@mail.com','CLIENTE','ACTIVO',3109988776,'FEMENINO'),
+(109887766,'Raul','Pereira','pass12','raul12@mail.com','CLIENTE','ACTIVO',3158877665,'MASCULINO'),
+(101112233,'Laura','Nunez','pass13','laura13@mail.com','CLIENTE','ACTIVO',3121122334,'FEMENINO'),
+(100776655,'Carlos','Rojas','pass14','carlos14@mail.com','CLIENTE','ACTIVO',3107766554,'MASCULINO'),
+(108812299,'Marta','Silva','pass15','marta15@mail.com','CLIENTE','ACTIVO',3118122993,'FEMENINO'),
+(102211144,'Andrés','Flores','pass16','andres16@mail.com','CLIENTE','ACTIVO',3132111445,'MASCULINO'),
+(106543219,'Patricia','Ruiz','pass17','patricia17@mail.com','CLIENTE','ACTIVO',3175432198,'FEMENINO'),
+(107612340,'Fernando','Morales','pass18','fernando18@mail.com','CLIENTE','ACTIVO',3166123409,'MASCULINO'),
+(103210987,'Gabriela','Ortega','pass19','gabriela19@mail.com','CLIENTE','ACTIVO',3102109876,'FEMENINO'),
+(102398764,'Jorge','Navarro','pass20','jorge20@mail.com','CLIENTE','ACTIVO',3193987645,'MASCULINO'),
+(109943211,'Isabel','Reyes','pass21','isabel21@mail.com','CLIENTE','ACTIVO',3119432110,'FEMENINO'),
+(108561200,'Cesar','Camargo','pass22','cesar22@mail.com','CLIENTE','ACTIVO',3125612008,'MASCULINO'),
+(107777444,'Natalia','Delgado','pass23','natalia23@mail.com','CLIENTE','ACTIVO',3187774449,'FEMENINO'),
+(106331255,'Javier','Salazar','pass24','javier24@mail.com','CLIENTE','ACTIVO',3193312553,'MASCULINO'),
+(105444666,'Valentina','Vega','pass25','valentina25@mail.com','CLIENTE','ACTIVO',3134446666,'FEMENINO'),
+(104555777,'Oscar','Acosta','pass26','oscar26@mail.com','CLIENTE','ACTIVO',3145557772,'MASCULINO'),
+(103666888,'Andrea','Luna','pass27','andrea27@mail.com','CLIENTE','ACTIVO',3176668881,'FEMENINO'),
+(102777999,'Samuel','Pinto','pass28','samuel28@mail.com','CLIENTE','ACTIVO',3107779990,'MASCULINO'),
+(101888000,'Diana','Mejía','pass29','diana29@mail.com','CLIENTE','ACTIVO',3118880009,'FEMENINO'),
+(100999111,'Esteban','Quiroga','pass30','esteban30@mail.com','CLIENTE','ACTIVO',3129991117,'MASCULINO');
 
-INSERT INTO PROVEEDOR (NOMBRE_PROVEEDOR,NUMERO_TELEFONICO,CORREO_PROVEEDOR,DIRECCION,ESTADO) VALUES
-('ProvA',500000001,'prova@mail.com','Calle 1','ACTIVO'),
-('ProvB',500000002,'provb@mail.com','Calle 2','ACTIVO'),
-('ProvC',500000003,'provc@mail.com','Calle 3','INACTIVO'),
-('ProvD',500000004,'provd@mail.com','Calle 4','ACTIVO'),
-('ProvE',500000005,'prove@mail.com','Calle 5','ACTIVO'),
-('ProvF',500000006,'provf@mail.com','Calle 6','ACTIVO'),
-('ProvG',500000007,'provg@mail.com','Calle 7','INACTIVO'),
-('ProvH',500000008,'provh@mail.com','Calle 8','ACTIVO'),
-('ProvI',500000009,'provi@mail.com','Calle 9','ACTIVO'),
-('ProvJ',500000010,'provj@mail.com','Calle 10','ACTIVO'),
-('ProvK',500000011,'provk@mail.com','Calle 11','ACTIVO'),
-('ProvL',500000012,'provl@mail.com','Calle 12','ACTIVO'),
-('ProvM',500000013,'provm@mail.com','Calle 13','ACTIVO'),
-('ProvN',500000014,'provn@mail.com','Calle 14','ACTIVO'),
-('ProvO',500000015,'provo@mail.com','Calle 15','INACTIVO'),
-('ProvP',500000016,'provp@mail.com','Calle 16','ACTIVO');
 
-INSERT INTO INVENTARIO (NOMBRE_PRODUCTO,DESCRIPCION_PRODUCTO,CANTIDAD_DISPONIBLE,UNIDAD_MEDIDA,ESTADO_PRODUCTO,COSTO_UNITARIO,FECHA_ENTREGA,REGISTRADO_POR) VALUES
-('Producto1','Desc1',10,'Kg','DISPONIBLE',100, '2025-01-15',100000001),
-('Producto2','Desc2',5,'L','DISPONIBLE',200, '2025-02-01',100000002),
-('Producto3','Desc3',0,'Cm','NO DISPONIBLE',150, '2025-01-20',100000003),
-('Producto4','Desc4',12,'G','DISPONIBLE',80, '2025-03-05',100000004),
-('Producto5','Desc5',7,'Lb','DISPONIBLE',90, '2025-02-18',100000005),
-('Producto6','Desc6',20,'M','DISPONIBLE',300, '2025-03-22',100000006),
-('Producto7','Desc7',15,'Ft','DISPONIBLE',250, '2025-04-10',100000007),
-('Producto8','Desc8',3,'Ml','DISPONIBLE',50, '2025-04-15',100000008),
-('Producto9','Desc9',6,'Mg','DISPONIBLE',60, '2025-05-01',100000009),
-('Producto10','Desc10',8,'Gal','DISPONIBLE',120,'2025-05-05',100000010),
-('Producto11','Desc11',11,'Kg','DISPONIBLE',110,'2025-05-10',100000011),
-('Producto12','Desc12',9,'L','DISPONIBLE',95, '2025-05-12',100000012),
-('Producto13','Desc13',14,'M','DISPONIBLE',210,'2025-05-15',100000013),
-('Producto14','Desc14',2,'Cm','DISPONIBLE',75, '2025-05-18',100000014),
-('Producto15','Desc15',4,'G','DISPONIBLE',55, '2025-05-20',100000015),
-('Producto16','Desc16',13,'Lb','DISPONIBLE',130,'2025-05-22',100000016),
-('Producto17','Desc17',1,'Ft','DISPONIBLE',45, '2025-05-25',100000017),
-('Producto18','Desc18',16,'Kg','DISPONIBLE',170,'2025-05-28',100000018);
+INSERT INTO PROVEEDOR (NOMBRE_PROVEEDOR, NUMERO_TELEFONICO, CORREO_PROVEEDOR, DIRECCION, ESTADO) VALUES
+('Alimentos Santa Fe', 3104567890, 'santafe.prov@mail.com', 'Calle 12 #4-10, Bogotá', 'ACTIVO'),
+('DistriAseo Bogotá', 3123456789, 'contacto@distriaseo.com', 'Cra 20 #45-33, Bogotá', 'ACTIVO'),
+('Galletas La Dulzura', 3112233445, 'ventas@ladulzura.com', 'Av 30 #67-90, Soacha', 'INACTIVO'),
+('Hogar y Limpieza SAS', 3156789012, 'info@hogarylimpieza.co', 'Calle 18 #9-05, Chía', 'ACTIVO'),
+('Proveedora Express', 3167890123, 'express@proveedora.com', 'Cra 7 #80-15, Bogotá', 'ACTIVO'),
+('Distribuciones El Vecino', 3145678901, 'elvecino@correo.com', 'Transv 13 #55-40, Bogotá', 'ACTIVO'),
+('Almacenes 3 Estrellas', 3134567890, 'contacto@3estrellas.co', 'Cl 100 #20-60, Fontibón', 'INACTIVO'),
+('DeliProveedores', 3109988776, 'servicio@deliproveedores.com', 'Cra 50 #12-34, Bogotá', 'ACTIVO'),
+('EcoHogar Ltda.', 3182345678, 'ecohogar@mail.com', 'Cra 16 #92-11, Bogotá', 'ACTIVO'),
+('Súper Limpio', 3198765432, 'contacto@superlimpio.co', 'Cl 85 #24-70, Bogotá', 'ACTIVO'),
+('Snackitos', 3175432198, 'ventas@snackitos.com', 'Cra 10 #45-67, Suba', 'ACTIVO'),
+('Productos El Rincón', 3187774449, 'rincon@productos.co', 'Cl 76 #14-23, Engativá', 'ACTIVO'),
+('Mundo Aseo', 3193312553, 'mundoaseo@mail.com', 'Av 68 #30-20, Kennedy', 'ACTIVO'),
+('Limpia YA!', 3134446666, 'contacto@limpiaya.com', 'Cl 24 #11-50, Teusaquillo', 'INACTIVO'),
+('Todo Snacks', 3145557772, 'ventas@todosnacks.com', 'Cra 28 #60-20, Bogotá', 'ACTIVO'),
+('Distribuciones Bogotá', 3176668881, 'info@distribogota.com', 'Cl 33 #16-08, Chapinero', 'ACTIVO'),
+('Súper Abarrotes', 3168889990, 'abastos@superabarrotes.com', 'Cra 80 #20-50, Suba', 'ACTIVO'),
+('ProviLimpio', 3181122334, 'proveedor@provilimpio.com', 'Cl 95 #28-33, Usaquén', 'ACTIVO'),
+('Deli Galletas S.A.S.', 3174455667, 'ventas@deligalletas.com', 'Cra 12 #45-78, Bosa', 'ACTIVO'),
+('Tienda Mayorista SAS', 3198877665, 'mayorista@tmayor.com', 'Cl 55 #32-18, Tunal', 'INACTIVO'),
+('SnackExpress', 3107766554, 'ventas@snackexpress.com', 'Cra 13 #70-19, Engativá', 'ACTIVO'),
+('Droguería Mi Barrio', 3132111445, 'info@drogueriabarrio.com', 'Cl 42 #18-21, Bogotá', 'ACTIVO'),
+('Higienix Proveedores', 3176543210, 'contacto@higienix.co', 'Cra 33 #15-09, Suba', 'ACTIVO'),
+('Lácteos Del Valle', 3186123409, 'ventas@delvalle.com', 'Cl 61 #24-66, Bogotá', 'ACTIVO'),
+('Suministros Familia', 3102109876, 'familia@suministros.co', 'Cra 15 #10-10, Bogotá', 'INACTIVO'),
+('Distribuidora Norte', 3193987645, 'contacto@nortedis.com', 'Av 68 #33-50, Usaquén', 'ACTIVO'),
+('Multiservicios DC', 3119432110, 'multiservicios@dc.com', 'Cra 23 #70-80, Bogotá', 'ACTIVO'),
+('Snack Market', 3125612008, 'ventas@snackmarket.com', 'Cl 19 #11-45, Bogotá', 'ACTIVO'),
+('Aseo Urbano', 3189991234, 'contacto@aseourbano.co', 'Cra 16 #100-55, Suba', 'ACTIVO'),
+('DistriProductos SAS', 3138887777, 'info@distriproductos.com', 'Cl 70 #27-80, Bogotá', 'ACTIVO');
+
+INSERT INTO INVENTARIO (NOMBRE_PRODUCTO, DESCRIPCION_PRODUCTO, CANTIDAD_DISPONIBLE, UNIDAD_MEDIDA,ESTADO_PRODUCTO, COSTO_UNITARIO, FECHA_ENTREGA, FECHA_VENCIMIENTO, REGISTRADO_POR) VALUES
+('Galletas Festival', 'Galletas de vainilla con crema', 20, 'G', 'DISPONIBLE', 800, '2025-06-10', '2025-12-10', 102345678),
+('Jabón Rey', 'Jabón azul multiusos', 15, 'G', 'DISPONIBLE', 1200, '2025-05-15', NULL, 109876543),
+('Detergente Fab', 'Detergente en polvo 1Kg', 10, 'Kg', 'DISPONIBLE', 4500, '2025-06-01', NULL, 100000003),
+('Coca-Cola', 'Botella personal 400ml', 25, 'Ml', 'DISPONIBLE', 2500, '2025-06-20', '2025-09-01', 100000004),
+('Chocorramo', 'Ponqué cubierto de chocolate', 18, 'G', 'DISPONIBLE', 2200, '2025-06-05', '2025-10-05', 102345678),
+('Papel Higiénico Familia', 'Doble hoja x 4 rollos', 12, 'G', 'DISPONIBLE', 5000, '2025-06-12', NULL, 109876543),
+('Agua Cristal', 'Botella 600ml', 30, 'Ml', 'DISPONIBLE', 1500, '2025-06-17', '2025-09-17', 100000007),
+('Shampoo Savital', 'Con sábila 400ml', 10, 'Ml', 'DISPONIBLE', 6800, '2025-05-30', '2026-05-30', 109876543),
+('Jugo Hit', 'Caja 200ml - Mora', 20, 'Ml', 'DISPONIBLE', 1600, '2025-06-18', '2025-09-18', 100000009),
+('Margarina Rama', 'Tarrina 250g', 10, 'G', 'DISPONIBLE', 3800, '2025-06-15', '2025-12-15', 100000010),
+('Café Águila Roja', 'Paquete 250g', 8, 'G', 'DISPONIBLE', 7000, '2025-06-03', '2026-01-03', 102345678),
+('Huevos AA', 'Cubeta 30 unidades', 5, 'G', 'DISPONIBLE', 13500, '2025-06-10', '2025-06-30', 109876543),
+('Leche Alquería', 'Bolsa 1L', 15, 'L', 'DISPONIBLE', 3200, '2025-06-19', '2025-07-10', 109876543),
+('Pan Tajado Bimbo', 'Paquete familiar', 7, 'G', 'DISPONIBLE', 5500, '2025-06-15', '2025-07-05', 100000014),
+('Vinagre Blanco', 'Botella 500ml', 10, 'Ml', 'DISPONIBLE', 2200, '2025-05-28', '2026-05-28', 100000015),
+('Sal Refisal', 'Sal yodada 1Kg', 10, 'Kg', 'DISPONIBLE', 2800, '2025-06-12', NULL, 100000016),
+('Aceite Premier', 'Botella 1L', 10, 'L', 'DISPONIBLE', 9200, '2025-06-06', '2026-01-06', 102345678),
+('Cloro Mr Músculo', 'Botella 1L', 8, 'L', 'DISPONIBLE', 3500, '2025-06-10', '2026-06-10', 109876543),
+('Toallas Familia', 'Empaque de 100', 6, 'G', 'DISPONIBLE', 5200, '2025-06-14', NULL, 100000019),
+('Yogurt Alpina', 'Botella fresa 750ml', 12, 'Ml', 'DISPONIBLE', 4600, '2025-06-20', '2025-07-20', 100000020),
+('Arequipe Alpina', 'Pote 220g', 10, 'G', 'DISPONIBLE', 3900, '2025-06-11', '2025-11-11', 100000021),
+('Maní Salado', 'Bolsa 100g', 20, 'G', 'DISPONIBLE', 1300, '2025-06-18', '2025-10-18', 100000022),
+('Chocolate Jet', 'Barra 12g', 30, 'G', 'DISPONIBLE', 600, '2025-06-19', '2026-01-19', 102345678),
+('Gel Antibacterial', 'Frasco 300ml', 10, 'Ml', 'DISPONIBLE', 2900, '2025-06-01', '2026-06-01', 100000024),
+('Crema Dental Colgate', '120ml', 15, 'Ml', 'DISPONIBLE', 4600, '2025-06-07', '2027-06-07', 109876543),
+('Arroz Diana', 'Bolsa 1Kg', 20, 'Kg', 'DISPONIBLE', 4400, '2025-06-15', '2026-06-15', 100000026),
+('Frijoles Cargamanto', 'Bolsa 500g', 12, 'G', 'DISPONIBLE', 4800, '2025-06-11', '2026-06-11', 102345678),
+('Harina PAN', 'Harina de maíz precocida 1Kg', 8, 'Kg', 'DISPONIBLE', 5200, '2025-06-10', '2026-06-10', 100000028),
+('Azúcar Incauca', 'Bolsa 1Kg', 10, 'Kg', 'DISPONIBLE', 3500, '2025-06-12', '2026-06-12', 109876543),
+('Avena Alpina', 'Botella 1L', 10, 'L', 'DISPONIBLE', 3300, '2025-06-13', '2025-07-13', 102345678);
 
 INSERT INTO COMPRA (FECHA_COMPRA,VALOR_COMPRA,CANTIDAD_COMPRA,ESTADO_COMPRA,DESCUENTO,REGISTRADA_POR,SUMINISTRADA_POR) VALUES
 ('2025-01-05',1000,5,'REALIZADA',NULL,100000001,1),
@@ -215,80 +251,3 @@ INSERT INTO VENTAS_CREDITO (SALDO,NUMERO_CUOTAS,FECHA_PAGO_CUOTA,FECHA_FIADO,DEU
 (4025,7,'2025-08-05','2025-07-05',100000018,14,'2025-09-05'),
 (5200,8,'2025-08-10','2025-07-10',100000019,15,'2025-09-10'),
 (6300,9,'2025-08-15','2025-07-15',100000020,16,'2025-09-15');
-
--- CONSULTAS MULTITABLA
-
-/* Consulta para obtener las compras con
-los datos del usuario que las registró,
-el proveedor que las suministró y
-el inventario recibido en dichas compras */
-SELECT c.ID_COMPRA, c.FECHA_COMPRA, u.NOMBRE, u.APELLIDO,
-       p.NOMBRE_PROVEEDOR, i.NOMBRE_PRODUCTO, ds.CANTIDAD_PRODUCTO
-FROM COMPRA c
-JOIN USUARIO u ON c.REGISTRADA_POR = u.CEDULA
-JOIN PROVEEDOR p ON c.SUMINISTRADA_POR = p.ID_PROVEEDOR
-JOIN DETALLES_SURTE ds ON c.ID_COMPRA = ds.COMPRA
-JOIN INVENTARIO i ON ds.INVENTARIO = i.ID_INVENTARIO;
-
-/* Consulta que permite mostrar los eventos
-y qué productos del inventario fueron usados
-para abastecer dichos eventos incluyendo
-el valor y cantidad usados por evento */
-SELECT e.NOMBRE_EVENTO, e.FECHA_EVENTO, 
-       i.NOMBRE_PRODUCTO, dse.CANTIDAD_PRODUCTO,
-       dse.VALOR_PRODUCTO
-FROM EVENTO e
-JOIN DETALLE_SURTE_EVENTO dse ON e.ID_EVENTO = dse.EVENTO
-JOIN INVENTARIO i ON dse.INVENTARIO = i.ID_INVENTARIO
-JOIN PROVEEDOR p ON p.ID_PROVEEDOR IN (
-  SELECT PROVEEDOR FROM DETALLES_SUMINISTRA WHERE INVENTARIO = i.ID_INVENTARIO
-);
-
-/* Consulta de control administrativo para ver
-las ventas realizadas, con el usuario vendedor,
-los productos entregados en dicha venta y
-datos básicos del inventario involucrado */
-SELECT v.ID_VENTA, u.NOMBRE, u.APELLIDO, 
-       i.NOMBRE_PRODUCTO, da.CANTIDAD_PRODUCTO
-FROM VENTA v
-JOIN USUARIO u ON v.VENTA_REALIZADA_POR = u.CEDULA
-JOIN DETALLES_ABASTECE da ON v.ID_VENTA = da.VENTA
-JOIN INVENTARIO i ON da.INVENTARIO = i.ID_INVENTARIO;
-
-/* Consulta enfocada a la gestión de fiados,
-identificando al usuario deudor, la venta
-a la que pertenece la deuda y el detalle
-de los productos vendidos en dicha venta */
-SELECT vc.ID_FIADO, u.NOMBRE, u.APELLIDO,
-       i.NOMBRE_PRODUCTO, da.VALOR_PRODUCTO
-FROM VENTAS_CREDITO vc
-JOIN USUARIO u ON vc.DEUDA_DE = u.CEDULA
-JOIN VENTA v ON vc.DE_QUE_VENTA_ES = v.ID_VENTA
-JOIN DETALLES_ABASTECE da ON v.ID_VENTA = da.VENTA
-JOIN INVENTARIO i ON da.INVENTARIO = i.ID_INVENTARIO;
-
-/* Reporte completo para la gerencia, muestra
-los productos del inventario, su proveedor,
-las compras donde fueron incluidos y
-la cantidad registrada en cada compra */
-SELECT i.NOMBRE_PRODUCTO, p.NOMBRE_PROVEEDOR,
-       c.ID_COMPRA, ds.CANTIDAD_PRODUCTO
-FROM INVENTARIO i
-JOIN DETALLES_SUMINISTRA dsum ON i.ID_INVENTARIO = dsum.INVENTARIO
-JOIN PROVEEDOR p ON dsum.PROVEEDOR = p.ID_PROVEEDOR
-JOIN DETALLES_SURTE ds ON i.ID_INVENTARIO = ds.INVENTARIO
-JOIN COMPRA c ON ds.COMPRA = c.ID_COMPRA;
-
-/* Informe de auditoría completo, que une
-datos de ventas a crédito, sus productos,
-inventario asociado, vendedor de la venta
-y datos de usuario deudor para auditoría */
-SELECT vc.ID_FIADO, u.NOMBRE AS DEUDOR, 
-       v.ID_VENTA, uv.NOMBRE AS VENDEDOR,
-       i.NOMBRE_PRODUCTO, da.VALOR_PRODUCTO
-FROM VENTAS_CREDITO vc
-JOIN USUARIO u ON vc.DEUDA_DE = u.CEDULA
-JOIN VENTA v ON vc.DE_QUE_VENTA_ES = v.ID_VENTA
-JOIN USUARIO uv ON v.VENTA_REALIZADA_POR = uv.CEDULA
-JOIN DETALLES_ABASTECE da ON v.ID_VENTA = da.VENTA
-JOIN INVENTARIO i ON da.INVENTARIO = i.ID_INVENTARIO;
