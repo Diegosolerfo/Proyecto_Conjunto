@@ -4,6 +4,7 @@ SELECT * FROM USUARIO;
 SELECT * FROM PROVEEDOR;
 -- Consulta todo el inventario
 SELECT * FROM INVENTARIO;
+UPDATE INVENTARIO SET CANTIDAD_DISPONIBLE = 11 WHERE ID_INVENTARIO = 49;
 -- Consulta todas las compras
 SELECT * FROM COMPRA;
 -- Consulta los detalles de surtido
