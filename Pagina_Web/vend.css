@@ -1,0 +1,708 @@
+/* Paleta de Colores (Reutilizada del administrador) */
+:root {
+    --color-primary-dark-brown: #4A2C2A; /* Marrón oscuro intenso (sidebar, títulos) */
+    --color-secondary-creamy-beige: #F5EFE6; /* Beige cremoso / Latte (fondo general) */
+    --color-accent-amber: #D48C35; /* Ámbar cálido / Naranja quemado (botones primarios, resaltados) */
+    --color-accent-green: #6B8E23; /* Verde sutil (botones secundarios, éxito) */
+    --color-text-light: #FDFBF8; /* Blanco roto / Crema claro (texto sobre fondos oscuros) */
+    --color-text-dark: #331D1B; /* Marrón oscuro para texto (texto general, iconos) */
+
+    --color-hover-dark-brown: #3A2220;
+    --color-hover-amber: #A06B22;
+    --color-hover-green: #5A771F;
+
+    --color-red-delete: #DC3545; /* Rojo para acciones de eliminar/cancelar */
+    --color-hover-red: #C82333;
+    
+    --color-secondary-button: #6c757d; /* Gris para botones secundarios */
+    --color-hover-secondary-button: #5a6268;
+
+    --color-view-details: #17a2b8; /* Color para botón de ver detalles */
+    --color-hover-view-details: #138496;
+}
+
+/* Estilos Generales */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-secondary-creamy-beige);
+    color: var(--color-text-dark);
+    line-height: 1.6;
+    display: flex;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Contenedor Principal del Vendedor (similar al admin-container) */
+.seller-container {
+    display: flex;
+    width: 100%;
+}
+
+/* Sidebar (similar al admin sidebar) */
+.sidebar {
+    width: 250px;
+    background-color: var(--color-primary-dark-brown);
+    color: var(--color-text-light);
+    padding: 20px 0;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.sidebar-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 0 15px;
+}
+
+.seller-logo { /* Similar al admin-logo */
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid var(--color-accent-amber);
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.sidebar-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: var(--color-accent-amber);
+}
+
+.seller-nav ul { /* Similar a admin-nav ul */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.seller-nav .nav-item { /* Similar a admin-nav .nav-item */
+    padding: 15px 25px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.seller-nav .nav-item i {
+    font-size: 1.3rem;
+    color: rgba(253, 251, 248, 0.7);
+}
+
+.seller-nav .nav-item:hover {
+    background-color: var(--color-hover-dark-brown);
+    color: var(--color-accent-amber);
+}
+
+.seller-nav .nav-item.active {
+    background-color: var(--color-accent-amber);
+    color: var(--color-primary-dark-brown);
+    font-weight: bold;
+}
+
+.seller-nav .nav-item.active i {
+    color: var(--color-primary-dark-brown);
+}
+
+.seller-nav .nav-item a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+
+/* Main Content del Vendedor (similar al admin-content) */
+.seller-content {
+    flex-grow: 1;
+    padding: 30px;
+    background-color: var(--color-secondary-creamy-beige);
+    display: flex;
+    flex-direction: column;
+}
+
+.content-header { /* Similar a admin content-header */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.content-header h1 {
+    margin: 0;
+    color: var(--color-primary-dark-brown);
+    font-size: 2.2rem;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    color: var(--color-text-dark);
+}
+
+.user-info i {
+    font-size: 1.5rem;
+    color: var(--color-accent-amber);
+}
+
+/* Tarjetas (Cards - similar al admin) */
+.card {
+    background-color: var(--color-text-light);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+/* Tab Content (similar al admin) */
+.tab-content {
+    display: none;
+    flex-grow: 1;
+    padding-top: 10px;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.tab-content h2 {
+    color: var(--color-primary-dark-brown);
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    border-bottom: 2px solid var(--color-accent-amber);
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+/* Dashboard Specific Styles (similar al admin) */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.dashboard-card {
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.dashboard-card h3 {
+    color: var(--color-accent-amber);
+    font-size: 1.3rem;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.dashboard-card .metric {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--color-primary-dark-brown);
+    margin-bottom: 10px;
+}
+
+.dashboard-card .icon-overlay {
+    position: absolute;
+    bottom: -15px;
+    right: -15px;
+    font-size: 5rem;
+    color: rgba(74, 44, 42, 0.1);
+    z-index: 0;
+}
+
+.recent-activity ul {
+    list-style: none;
+    padding: 0;
+}
+
+.recent-activity li {
+    padding: 10px 0;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.05);
+    color: var(--color-text-dark);
+}
+
+.recent-activity li:last-child {
+    border-bottom: none;
+}
+
+.activity-time {
+    font-weight: bold;
+    color: var(--color-accent-amber);
+    margin-right: 8px;
+}
+
+/* Controls (Botones y Búsqueda - similar al admin) */
+.controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.search-box {
+    position: relative;
+    width: 300px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 40px 12px 15px;
+    border: 1px solid rgba(74, 44, 42, 0.2);
+    border-radius: 5px;
+    font-size: 1rem;
+    color: var(--color-text-dark);
+    background-color: var(--color-secondary-creamy-beige);
+    transition: border-color 0.3s ease;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: var(--color-accent-amber);
+    box-shadow: 0 0 0 3px rgba(212, 140, 53, 0.2);
+}
+
+.search-box i {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-accent-amber);
+    font-size: 1.1rem;
+}
+
+/* Botones Generales (similar al admin) */
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: var(--color-accent-amber);
+    color: var(--color-text-light);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-hover-amber);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary { /* Nuevo botón secundario para el vendedor (ej: Añadir Producto, Cancelar) */
+    background-color: var(--color-secondary-button);
+    color: var(--color-text-light);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-hover-secondary-button);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.btn-icon {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+}
+
+.btn-edit {
+    background-color: var(--color-accent-green);
+    color: var(--color-text-light);
+}
+
+.btn-edit:hover {
+    background-color: var(--color-hover-green);
+}
+
+.btn-delete {
+    background-color: var(--color-red-delete);
+    color: var(--color-text-light);
+    margin-left: 8px;
+}
+
+.btn-delete:hover {
+    background-color: var(--color-hover-red);
+}
+
+.btn-view-details { /* Nuevo botón para ver detalles de factura */
+    background-color: var(--color-view-details);
+    color: var(--color-text-light);
+}
+
+.btn-view-details:hover {
+    background-color: var(--color-hover-view-details);
+}
+
+/* Tablas (similar al admin) */
+.table-responsive {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--color-text-light);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+table th, table td {
+    padding: 15px 20px;
+    text-align: left;
+    border-bottom: 1px solid rgba(74, 44, 42, 0.08);
+}
+
+table thead {
+    background-color: var(--color-primary-dark-brown);
+    color: var(--color-text-light);
+}
+
+table th {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: rgba(245, 239, 230, 0.5);
+}
+
+table tbody tr:hover {
+    background-color: rgba(212, 140, 53, 0.1);
+}
+
+/* Formularios (seller-form - similar a admin-form) */
+.seller-form .form-group {
+    margin-bottom: 20px;
+}
+
+.seller-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--color-primary-dark-brown);
+}
+
+.seller-form input[type="text"],
+.seller-form input[type="email"],
+.seller-form input[type="tel"],
+.seller-form input[type="number"],
+.seller-form input[type="date"], /* Agregado para tipo date */
+.seller-form select,
+.seller-form textarea {
+    width: calc(100% - 22px);
+    padding: 12px 10px;
+    border: 1px solid rgba(74, 44, 42, 0.2);
+    border-radius: 5px;
+    font-size: 1rem;
+    color: var(--color-text-dark);
+    background-color: var(--color-secondary-creamy-beige);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.seller-form input:focus, .seller-form select:focus, .seller-form textarea:focus {
+    outline: none;
+    border-color: var(--color-accent-amber);
+    box-shadow: 0 0 0 3px rgba(212, 140, 53, 0.2);
+}
+
+.seller-form textarea {
+    resize: vertical;
+}
+
+/* Estilos específicos para el formulario de factura */
+.form-section {
+    background-color: var(--color-secondary-creamy-beige);
+    border: 1px solid rgba(74, 44, 42, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: inset 0 1px 5px rgba(0, 0, 0, 0.05);
+}
+
+.form-section h4 {
+    color: var(--color-primary-dark-brown);
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    border-bottom: 1px dashed rgba(74, 44, 42, 0.2);
+    padding-bottom: 10px;
+}
+
+.invoice-products-table {
+    margin-bottom: 20px;
+}
+
+.invoice-products-table th, .invoice-products-table td {
+    padding: 10px 10px;
+    font-size: 0.95rem;
+}
+
+.invoice-products-table input,
+.invoice-products-table select {
+    width: 100%;
+    padding: 8px;
+    font-size: 0.9rem;
+    box-sizing: border-box; /* Incluye padding y border en el width */
+}
+
+.remove-product-line {
+    background-color: var(--color-red-delete);
+    padding: 6px 10px;
+}
+
+.add-product-line {
+    margin-top: 10px;
+}
+
+.invoice-summary {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Alinear a la derecha */
+    gap: 10px;
+    background-color: var(--color-text-light); /* Fondo más claro para el resumen */
+    padding: 20px;
+}
+
+.invoice-summary .summary-item {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 300px; /* Ancho máximo para el resumen */
+    font-size: 1.1rem;
+    color: var(--color-text-dark);
+}
+
+.invoice-summary .summary-item span {
+    font-weight: bold;
+}
+
+.invoice-summary input {
+    width: 120px; /* Ancho fijo para los campos de total */
+    text-align: right;
+    border: none;
+    background-color: transparent;
+    font-weight: bold;
+    color: var(--color-primary-dark-brown);
+}
+
+.invoice-summary .total {
+    font-size: 1.3rem;
+    border-top: 2px solid var(--color-accent-amber);
+    padding-top: 10px;
+    margin-top: 10px;
+}
+.invoice-summary .total input {
+    color: var(--color-accent-amber);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Modales (similar al admin) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding-top: 30px; /* Reducido para modals más largos */
+}
+
+.modal-content {
+    background-color: var(--color-text-light);
+    margin: 2% auto; /* Ajustado para más espacio vertical */
+    padding: 30px;
+    border: 1px solid rgba(74, 44, 42, 0.1);
+    width: 90%;
+    max-width: 800px; /* Más ancho para el formulario de factura */
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.close-button {
+    color: var(--color-primary-dark-brown);
+    font-size: 35px;
+    font-weight: bold;
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--color-red-delete);
+    text-decoration: none;
+}
+
+.modal-title {
+    color: var(--color-primary-dark-brown);
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    border-bottom: 2px solid var(--color-accent-amber);
+    padding-bottom: 10px;
+}
+
+
+/* Responsive Design (similar al admin, con ajustes para el vendedor) */
+@media (max-width: 992px) {
+    .sidebar {
+        width: 200px;
+    }
+    .seller-nav .nav-item {
+        font-size: 1rem;
+        padding: 12px 18px;
+    }
+    .content-header h1 {
+        font-size: 1.8rem;
+    }
+    .card-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+    table th, table td {
+        padding: 12px 15px;
+    }
+    .modal-content {
+        max-width: 700px;
+    }
+}
+
+@media (max-width: 768px) {
+    .seller-container {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        height: auto;
+        padding: 15px 0;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+    .sidebar-header {
+        margin-bottom: 15px;
+    }
+    .seller-nav ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px 20px;
+    }
+    .seller-nav .nav-item {
+        padding: 10px 15px;
+        font-size: 0.95rem;
+        flex-direction: column;
+        text-align: center;
+        gap: 5px;
+        border-radius: 5px;
+    }
+    .seller-nav .nav-item i {
+        font-size: 1.2rem;
+    }
+    .seller-content {
+        padding: 20px;
+    }
+    .content-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+    .content-header h1 {
+        font-size: 1.6rem;
+    }
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .search-box {
+        width: 100%;
+    }
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+    .btn-delete {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+    table th, table td {
+        font-size: 0.85rem;
+        padding: 10px;
+    }
+    .modal-content {
+        margin: 15px auto;
+        width: 95%;
+        padding: 20px;
+    }
+    .invoice-summary .summary-item {
+        max-width: 100%; /* El resumen ocupa todo el ancho disponible */
+    }
+    .form-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+@media (max-width: 480px) {
+    .seller-nav .nav-item {
+        padding: 8px 10px;
+        font-size: 0.85rem;
+    }
+    .sidebar-header h2 {
+        font-size: 1.3rem;
+    }
+    .dashboard-card .metric {
+        font-size: 2rem;
+    }
+    .dashboard-card .icon-overlay {
+        font-size: 4rem;
+    }
+    .seller-form input, .seller-form select, .seller-form textarea {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+    .invoice-products-table th, .invoice-products-table td {
+        font-size: 0.8rem;
+        padding: 5px;
+    }
+    .invoice-products-table input,
+    .invoice-products-table select {
+        padding: 5px;
+    }
+}

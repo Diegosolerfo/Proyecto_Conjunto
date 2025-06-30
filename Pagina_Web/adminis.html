@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración | INNOVAR CAFÉ</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="admin-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="https://via.placeholder.com/80x80?text=Admin+Logo" alt="Admin Logo" class="admin-logo">
+                <h2>Admin Café</h2>
+            </div>
+            <nav class="admin-nav">
+                <ul>
+                    <li class="nav-item active" data-tab="dashboard">
+                        <i class="fas fa-tachometer-alt"></i> Dashboard
+                    </li>
+                    <li class="nav-item" data-tab="clientes">
+                        <i class="fas fa-users"></i> Clientes
+                    </li>
+                    <li class="nav-item" data-tab="vendedores">
+                        <i class="fas fa-user-tie"></i> Vendedores
+                    </li>
+                    <li class="nav-item" data-tab="productos">
+                        <i class="fas fa-coffee"></i> Productos
+                    </li>
+                    <li class="nav-item" data-tab="ajustes">
+                        <i class="fas fa-cogs"></i> Ajustes
+                    </li>
+                    <li class="nav-item">
+                        <a href="Trabajo_clase.html"><i class="fas fa-arrow-alt-circle-left"></i> Volver a Tienda</a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="admin-content">
+            <header class="content-header">
+                <h1>Panel de Administración</h1>
+                <div class="user-info">
+                    <span>Hola, Administrador</span>
+                    <i class="fas fa-user-circle"></i>
+                </div>
+            </header>
+
+            <section id="dashboard" class="tab-content active">
+                <div class="card-grid">
+                    <div class="card dashboard-card">
+                        <h3>Total Clientes</h3>
+                        <p class="metric">1,234</p>
+                        <i class="fas fa-users icon-overlay"></i>
+                    </div>
+                    <div class="card dashboard-card">
+                        <h3>Productos en Stock</h3>
+                        <p class="metric">567</p>
+                        <i class="fas fa-boxes icon-overlay"></i>
+                    </div>
+                    <div class="card dashboard-card">
+                        <h3>Ventas Mes</h3>
+                        <p class="metric">$25,000</p>
+                        <i class="fas fa-chart-line icon-overlay"></i>
+                    </div>
+                    <div class="card dashboard-card">
+                        <h3>Nuevos Pedidos</h3>
+                        <p class="metric">42</p>
+                        <i class="fas fa-receipt icon-overlay"></i>
+                    </div>
+                </div>
+                <div class="recent-activity card">
+                    <h3>Actividad Reciente</h3>
+                    <ul>
+                        <li><span class="activity-time">Hace 5 min:</span> Nuevo cliente registrado - Juan Pérez.</li>
+                        <li><span class="activity-time">Hace 30 min:</span> Producto "Café Colombia Supremo" actualizado.</li>
+                        <li><span class="activity-time">Hace 1 hora:</span> Vendedor María García editó su perfil.</li>
+                        <li><span class="activity-time">Ayer:</span> Eliminado producto "Tostadora Vieja".</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="clientes" class="tab-content">
+                <h2>Gestión de Clientes</h2>
+                <div class="controls">
+                    <button class="btn btn-primary" data-action="create" data-target="cliente-modal"><i class="fas fa-plus-circle"></i> Nuevo Cliente</button>
+                    <div class="search-box">
+                        <input type="text" placeholder="Buscar cliente...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+                <div class="table-responsive card">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Email</th>
+                                <th>Teléfono</th>
+                                <th>Última Compra</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>101</td>
+                                <td>Ana López</td>
+                                <td>ana.l@example.com</td>
+                                <td>+57 310 123 4567</td>
+                                <td>2025-06-20</td>
+                                <td>
+                                    <button class="btn btn-icon btn-edit" data-action="edit" data-target="cliente-modal"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-icon btn-delete"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>102</td>
+                                <td>Carlos Ruiz</td>
+                                <td>carlos.r@example.com</td>
+                                <td>+57 320 987 6543</td>
+                                <td>2025-06-25</td>
+                                <td>
+                                    <button class="btn btn-icon btn-edit" data-action="edit" data-target="cliente-modal"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-icon btn-delete"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                            </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="vendedores" class="tab-content">
+                <h2>Gestión de Vendedores</h2>
+                <div class="controls">
+                    <button class="btn btn-primary" data-action="create" data-target="vendedor-modal"><i class="fas fa-user-plus"></i> Nuevo Vendedor</button>
+                    <div class="search-box">
+                        <input type="text" placeholder="Buscar vendedor...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+                <div class="table-responsive card">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Email</th>
+                                <th>Teléfono</th>
+                                <th>Fecha Contrato</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>201</td>
+                                <td>Laura García</td>
+                                <td>laura.g@innovar.com</td>
+                                <td>+57 300 111 2233</td>
+                                <td>2024-01-15</td>
+                                <td>
+                                    <button class="btn btn-icon btn-edit" data-action="edit" data-target="vendedor-modal"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-icon btn-delete"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>202</td>
+                                <td>Pedro Martínez</td>
+                                <td>pedro.m@innovar.com</td>
+                                <td>+57 301 444 5566</td>
+                                <td>2023-08-01</td>
+                                <td>
+                                    <button class="btn btn-icon btn-edit" data-action="edit" data-target="vendedor-modal"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-icon btn-delete"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                            </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="productos" class="tab-content">
+                <h2>Gestión de Productos</h2>
+                <div class="controls">
+                    <button class="btn btn-primary" data-action="create" data-target="producto-modal"><i class="fas fa-mug-hot"></i> Nuevo Producto</button>
+                    <div class="search-box">
+                        <input type="text" placeholder="Buscar producto...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+                <div class="table-responsive card">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Categoría</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>301</td>
+                                <td>Café Colombia Supremo 500g</td>
+                                <td>Granos de Origen</td>
+                                <td>$25.000</td>
+                                <td>150</td>
+                                <td>
+                                    <button class="btn btn-icon btn-edit" data-action="edit" data-target="producto-modal"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-icon btn-delete"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>302</td>
+                                <td>Cafetera Espresso Clásica</td>
+                                <td>Máquinas de Café</td>
+                                <td>$850.000</td>
+                                <td>25</td>
+                                <td>
+                                    <button class="btn btn-icon btn-edit" data-action="edit" data-target="producto-modal"><i class="fas fa-edit"></i></button>
+                                    <button class="btn btn-icon btn-delete"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                            </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="ajustes" class="tab-content">
+                <h2>Configuración del Sistema</h2>
+                <div class="card">
+                    <p>Aquí se configurarían opciones generales del sistema, notificaciones, roles de usuario, etc.</p>
+                    <form class="admin-form">
+                        <div class="form-group">
+                            <label for="site_name">Nombre del Sitio:</label>
+                            <input type="text" id="site_name" value="INNOVAR CAFÉ">
+                        </div>
+                        <div class="form-group">
+                            <label for="currency">Moneda:</label>
+                            <select id="currency">
+                                <option value="COP">COP - Pesos Colombianos</option>
+                                <option value="USD">USD - Dólar Estadounidense</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Guardar Ajustes</button>
+                    </form>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <div id="cliente-modal" class="modal">
+        <div class="modal-content card">
+            <span class="close-button">&times;</span>
+            <h3 class="modal-title">Nuevo Cliente</h3>
+            <form class="admin-form">
+                <div class="form-group">
+                    <label for="cliente-nombre">Nombre:</label>
+                    <input type="text" id="cliente-nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="cliente-email">Email:</label>
+                    <input type="email" id="cliente-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="cliente-telefono">Teléfono:</label>
+                    <input type="tel" id="cliente-telefono">
+                </div>
+                <div class="form-group">
+                    <label for="cliente-direccion">Dirección:</label>
+                    <input type="text" id="cliente-direccion">
+                </div>
+                <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Guardar Cliente</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="vendedor-modal" class="modal">
+        <div class="modal-content card">
+            <span class="close-button">&times;</span>
+            <h3 class="modal-title">Nuevo Vendedor</h3>
+            <form class="admin-form">
+                <div class="form-group">
+                    <label for="vendedor-nombre">Nombre:</label>
+                    <input type="text" id="vendedor-nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="vendedor-email">Email:</label>
+                    <input type="email" id="vendedor-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="vendedor-telefono">Teléfono:</label>
+                    <input type="tel" id="vendedor-telefono">
+                </div>
+                <div class="form-group">
+                    <label for="vendedor-cedula">Cédula:</label>
+                    <input type="text" id="vendedor-cedula">
+                </div>
+                <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Guardar Vendedor</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="producto-modal" class="modal">
+        <div class="modal-content card">
+            <span class="close-button">&times;</span>
+            <h3 class="modal-title">Nuevo Producto</h3>
+            <form class="admin-form">
+                <div class="form-group">
+                    <label for="producto-nombre">Nombre:</label>
+                    <input type="text" id="producto-nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="producto-categoria">Categoría:</label>
+                    <select id="producto-categoria" required>
+                        <option value="">Seleccione</option>
+                        <option value="Granos de Origen">Granos de Origen</option>
+                        <option value="Máquinas de Café">Máquinas de Café</option>
+                        <option value="Accesorios Barista">Accesorios Barista</option>
+                        <option value="Cafés Especiales">Cafés Especiales</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="producto-precio">Precio:</label>
+                    <input type="number" id="producto-precio" step="1000" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="producto-stock">Stock:</label>
+                    <input type="number" id="producto-stock" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="producto-descripcion">Descripción:</label>
+                    <textarea id="producto-descripcion" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Guardar Producto</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="adm.js"></script>
+</body>
+</html>
