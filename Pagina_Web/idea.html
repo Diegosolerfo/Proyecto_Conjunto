@@ -43,7 +43,7 @@
                         <li>
                             <a href="formulario_registro_proovedor.html">
                                 <i class="fas fa-user-tie"></i>
-                                <div>Proveedores</div>
+                                <div>Compras</div>
                             </a>
                             <ul class="menu-vertical" style="--cantidad-items:2">
                                 <li><a href="../../../RUIZ/VISTA/HTML/Formulario_registro/formulario_registro_proovedor.html">Registrar</a></li>
@@ -63,7 +63,7 @@
                         <li>
                             <a href="formulario_registro_cliente.html">
                                 <i class="fas fa-users"></i>
-                                <div>Clientes</div>
+                                <div>Ventas</div>
                             </a>
                             <ul class="menu-vertical" style="--cantidad-items:2">
                                 <li><a href="../../../RUIZ/VISTA/HTML/Formulario_registro/formulario_registro_cliente.html">Registrar</a></li>
@@ -73,7 +73,7 @@
                         <li>
                             <a href="">
                                 <i class="fas fa-coins"></i>
-                                <div>Cotizacion</div>
+                                <div>Deudas</div>
                             </a>
                             <ul class="menu-vertical" style="--cantidad-items:2">
                                 <li><a href="../../../RUIZ/CONTROLADOR/CRUD_COTIZACION/consulta_clientes_generar.php">Registrar</a></li>
@@ -105,7 +105,7 @@
                     <div class="card">
                         <div class="card-content">
                             <div class="number"><?php echo count($respuesta); ?></div>
-                            <div class="card-name">usuarios</div>
+                            <div class="card-name">Usuarios</div>
                         </div>
                         <div class="icon-box">
                             <i class="fas fa-users"></i>
@@ -113,8 +113,8 @@
                     </div>                              
                     <div class="card">
                         <div class="card-content">
-                            <div class="number"><?php echo count($proveedor); ?></div>
-                            <div class="card-name">Proveedores</div>
+                            <div class="number"> <?php echo count($compras); ?></div>
+                            <div class="card-name">Compras</div>
                         </div>
                         <div class="icon-box">
                             <i class="fas fa-user-tie"></i>
@@ -131,20 +131,20 @@
                     </div>
                     <div class="card">
                         <div class="card-content">
-                            <div class="number"><?php echo count($cliente); ?> </div>
-                            <div class="card-name">Cliente</div>
-                        </div>
-                        <div class="icon-box">
-                            <i class="fas fa-warehouse"></i>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="number">$4500000</div>
+                            <div class="number"><?php echo count($Ventas); ?> </div>
                             <div class="card-name">Ventas</div>
                         </div>
                         <div class="icon-box">
                             <i class="fas fa-dollar-sign"></i>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <div class="number"><?php echo count($Deudas); ?></div>
+                            <div class="card-name">Deudas</div>
+                        </div>
+                        <div class="icon-box">
+                            <i class="fas fa-money-check"></i>
                         </div>
                     </div>
                 </div>
