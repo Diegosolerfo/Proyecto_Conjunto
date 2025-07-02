@@ -43,28 +43,27 @@ BEGIN
 END //
 DELIMITER ;
 
-
+-- Procedimiento para registrar productos y actualizar el valor de la compra y la cantidad del inventario
 DELIMITER $$
-CREATE PROCEDURE InsertarCompraYActualizarInventario (
-  IN p_id_proveedor INT,
-  IN p_fecha DATE,
-  IN p_monto_total DECIMAL(10,2)
+CREATE PROCEDURE RegistrarProductos (
+    IN P_VALOR_PRODUCTO MEDIUMINT,
+    IN P_CANT_PRODUCTO BIGINT,
+    IN P_INVENTARIO TINYINT,
+    IN P_COMPRA TINYINT
 )
 BEGIN
-  DECLARE nueva_compra_id INT;
-  INSERT INTO compra(SUMINISTRADA_POR, FECHA_COMPRA, VALOR_COMPRA)
-  VALUES (p_id_proveedor, p_fecha, p_monto_total);
-  SET nueva_compra_id = LAST_INSERT_ID();
-  
-  UPDATE inventario i
-  JOIN detalle_compra dc ON dc.id_producto = i.id_producto
-  SET i.cantidad_stock = i.cantidad_stock + dc.cantidad
-  WHERE dc.id_compra = nueva_compra_id;
+	DECLARE TOTAL INT UNSIGNED;
+	INSERT INTO DETALLES_SURTE (VALOR_PRODUCTO,CANTIDAD_PRODUCTO,INVENTARIO,COMPRA) 
+    VALUES (P_VALOR_PRODUCTO,P_CANT_PRODUCTO,P_INVENTARIO,P_COMPRA);
+    
+    UPDATE INVENTARIO SET CANTIDAD_DISPONIBLE = CANTIDAD_DISPONIBLE + P_CANT_PRODUCTO WHERE P_INVENTARIO = ID_INVENTARIO;
+    SET TOTAL = P_VALOR_PRODUCTO * P_CANT_PRODUCTO;
+    UPDATE COMPRA SET VALOR_COMPRA = VALOR_COMPRA + TOTAL WHERE P_COMPRA = ID_COMPRA;
 END$$
 DELIMITER ;
-
-DROP PROCEDURE InsertarCompraYActualizarInventario;
-CALL InsertarCompraYActualizarInventario(1, 1/07/2025, 10000);
+#DROP PROCEDURE RegistrarProductos;
+CALL REGISTRARPRODUCTOS(2500,10,2,1);
+CALL REGISTRARPRODUCTOS(1250,6,1,1);
 
 DELIMITER $$
 CREATE PROCEDURE RegistrarVentaYActualizarInventario (

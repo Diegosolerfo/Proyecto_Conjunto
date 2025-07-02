@@ -4,7 +4,6 @@ SELECT * FROM USUARIO;
 SELECT * FROM PROVEEDOR;
 -- Consulta todo el inventario
 SELECT * FROM INVENTARIO;
-UPDATE INVENTARIO SET CANTIDAD_DISPONIBLE = 11 WHERE ID_INVENTARIO = 49;
 -- Consulta todas las compras
 SELECT * FROM COMPRA;
 -- Consulta los detalles de surtido
@@ -13,8 +12,8 @@ SELECT * FROM DETALLES_SURTE;
 SELECT * FROM DETALLES_SUMINISTRA;
 -- Consulta todas las ventas
 SELECT * FROM VENTA;
--- Consulta los detalles de abastecimiento
-SELECT * FROM DETALLES_ABASTECE;
+-- Consulta los detalles de la venta
+SELECT * FROM DETALLES_VENTA;
 -- Consulta todos los eventos
 SELECT * FROM EVENTO;
 -- Consulta los detalles de surtido de eventos

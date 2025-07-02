@@ -13,14 +13,14 @@
 <body>
     
     <div class="wrapper">
-        <form action="../../../RUIZ/CONTROLADOR/CRUD_usuarios/login.php" method="post">
+        <form method="post">
             <h1>Login</h1>
-            <div class="input-box">
-                <input type="number" placeholder="Documento"  name="log1" required>
-                <i class="bx bxs-user"></i>
+            <div class="input-box" id="form-logueo">
+                <input type="text" placeholder="Usuario" id="nombre_usuario" name="log1" required>
+                <i class="bx bx-user"></i>
             </div>
             <div class="input-box">
-                <input type="password" placeholder="Contraseña" name="log2" required>
+                <input type="password" placeholder="Contraseña" id="contrasena" name="log2" required>
                 <i class='bx bxs-lock-alt'></i>
             </div>
 
@@ -29,11 +29,11 @@
                 <a href="">Olvidaste tu contraseña?</a>
             </div>
 
-            <button type="submit" onclick="logueo();"  class="btn">login</button>
+            <button onclick="logueo();"  class="btn">login</button>
 
         </form>
     </div>
 
+    <script src="lo.js"></script>
 </body>
-
 </html>
