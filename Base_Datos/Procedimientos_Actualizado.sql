@@ -1,26 +1,30 @@
 DELIMITER //
-CREATE FUNCTION DeudaConMora(CEDULA INT)
+
+CREATE FUNCTION DeudaConMora(CEDULA BIGINT)
 RETURNS DECIMAL(10,2)
 DETERMINISTIC
 READS SQL DATA
 BEGIN
   DECLARE TOTAL DECIMAL(10,2);
-  
+
   SELECT SUM(
     SALDO +
     (CASE
-      WHEN DATEDIFF(CURDATE(), fecha_limite) > 0
-      THEN monto * 0.01 * FLOOR(DATEDIFF(CURDATE(), fecha_limite) / 7)
+      WHEN DATEDIFF(CURDATE(), FECHA_VENCIMIENTO) > 0
+      THEN SALDO * 0.01 * FLOOR(DATEDIFF(CURDATE(), FECHA_VENCIMIENTO) / 7)
       ELSE 0
     END)
   )
   INTO TOTAL
-  FROM ventas_credito
-  WHERE id_cliente = id_cliente AND estado = 'pendiente';
-  
-  RETURN IFNULL(total, 0);
-END;
+  FROM VENTAS_CREDITO
+  WHERE DEUDA_DE = CEDULA;
+
+  RETURN IFNULL(TOTAL, 0);
+END //
 DELIMITER ;
+#DROP FUNCTION DEUDACONMORA;
+Select DeudaConMora(106789012);
+
 DELIMITER //
 CREATE FUNCTION TotalGastoProveedorUltimoMes(id_proveedor INT)
 RETURNS DECIMAL(10,2)
@@ -36,8 +40,10 @@ BEGIN
     AND c.fecha >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH);
     
   RETURN total;
-END;
+END //
 DELIMITER ;
+
+
 DELIMITER $$
 CREATE PROCEDURE InsertarCompraYActualizarInventario (
   IN p_id_proveedor INT,
@@ -46,25 +52,21 @@ CREATE PROCEDURE InsertarCompraYActualizarInventario (
 )
 BEGIN
   DECLARE nueva_compra_id INT;
-
-  -- Insertar la compra
-  INSERT INTO compra(id_proveedor, fecha, monto_total)
+  INSERT INTO compra(SUMINISTRADA_POR, FECHA_COMPRA, VALOR_COMPRA)
   VALUES (p_id_proveedor, p_fecha, p_monto_total);
-
   SET nueva_compra_id = LAST_INSERT_ID();
-
-  -- Aquí se debe insertar los detalles en detalle_compra (se asume que eso lo haces con otro proceso o por fuera)
-  -- Luego actualizas inventario según el detalle_compra:
-
+  
   UPDATE inventario i
   JOIN detalle_compra dc ON dc.id_producto = i.id_producto
   SET i.cantidad_stock = i.cantidad_stock + dc.cantidad
   WHERE dc.id_compra = nueva_compra_id;
 END$$
-
 DELIMITER ;
-DELIMITER $$
 
+DROP PROCEDURE InsertarCompraYActualizarInventario;
+CALL InsertarCompraYActualizarInventario(1, 1/07/2025, 10000);
+
+DELIMITER $$
 CREATE PROCEDURE RegistrarVentaYActualizarInventario (
   IN p_id_cliente INT,
   IN p_fecha DATE,
