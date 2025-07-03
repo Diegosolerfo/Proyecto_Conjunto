@@ -39,8 +39,7 @@ function logueo(){
     const password = document.getElementById('contrasena').value;
 
     if (username === 'admin' && password === 'admin123') {
-        alert(username + ' ha iniciado sesión correctamente.');
-        window.location.href = 'Admin/adminis.html'; 
+        window.location.href = './Admin/adminis.html'; 
     } else if (username === 'maria' && password === 'cliente123') {
         window.location.href = 'Cliente/cliente.html';
     } else if (username === 'pedro' && password === 'operador123') {
