@@ -13,14 +13,14 @@
 <body>
     
     <div class="wrapper">
-        <form method="post">
+        <form method="post" action="Controlador/controler_usuario.php">
             <h1>Login</h1>
             <div class="input-box">
-                <input type="text" placeholder="Usuario" id="nombre_usuario" name="log1" required>
+                <input type="text" placeholder="Usuario" id="cedula" name="cedula" required>
                 <i class="bx bx-user"></i>
             </div>
             <div class="input-box">
-                <input type="password" placeholder="Contraseña" id="contrasena" name="log2" required>
+                <input type="password" placeholder="Contraseña" id="contrasena" name="contrasena" required>
                 <i class='bx bxs-lock-alt'></i>
             </div>
 
@@ -28,9 +28,9 @@
                 <label><input type="checkbox">Recordarme</label>
                 <a href="">Olvidaste tu contraseña?</a>
             </div>
-
+            <button class="btn">login</button>
         </form>
-        <button onclick="logueo();"  class="btn">login</button>
+        
     </div>
 
     <script src="lo.js"></script>
