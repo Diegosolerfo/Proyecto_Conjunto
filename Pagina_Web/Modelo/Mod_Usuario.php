@@ -40,5 +40,31 @@
             $sentencia->execute();
             return $sentencia->fetch(PDO::FETCH_ASSOC);
         }
+        public function panel_admin(){
+            $conexion = new PDO("mysql:host=localhost;dbname=conjunto", "root");
+            $sentencia = $conexion->prepare("call PANEL_ADMIN()");
+            $sentencia->execute();
+            return $sentencia->fetch(PDO::FETCH_ASSOC);
+        }#------------------------------------------------------------------ CLIENTES
+        public function crear_cliente(){
+            $conexion = new PDO("mysql:host=localhost;dbname=conjunto", "root");
+            $sentencia = $conexion->prepare("call crear_cliente(?,?,?,?,?,?,?,?,?)");
+            $sentencia->bindParam(1, $this->cedula);
+            $sentencia->bindParam(2, $this->nombre);
+            $sentencia->bindParam(3, $this->apellido);
+            $sentencia->bindParam(4, $this->contrasena);
+            $sentencia->bindParam(5, $this->correo);
+            $sentencia->bindParam(6, $this->tipo_usuario);
+            $sentencia->bindParam(7, $this->telefono);
+            $sentencia->bindParam(8, $this->genero);
+            $sentencia->bindParam(9, $this->fecha_nacimiento);
+            return $sentencia->execute();
+        }
+        public function ver_clientes(){
+            $conexion = new PDO("mysql:host=localhost;dbname=conjunto", "root");
+            $sentencia = $conexion->prepare("call ver_clientes()");
+            $sentencia->execute();
+            return $sentencia->fetchAll(PDO::FETCH_ASSOC);
+        }
     }
 ?>

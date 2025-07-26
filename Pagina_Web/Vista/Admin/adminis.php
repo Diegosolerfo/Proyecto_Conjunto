@@ -12,7 +12,7 @@
         <aside class="sidebar">
             <div class="sidebar-header">
                 <img src="../Imagenes/Logo_Admin.png" alt="Admin Logo" class="admin-logo">
-                <h2>Admin Café</h2>
+                <h2>Administrador</h2>
             </div>
             <nav class="admin-nav">
                 <ul>
@@ -46,27 +46,31 @@
                     <i class="fas fa-user-circle"></i>
                 </div>
             </header>
-
+            <?php
+            include '../../Modelo/Mod_Usuario.php';
+            $objeto = new usuario();
+            $datos = $objeto->panel_admin();
+            ?>
             <section id="dashboard" class="tab-content active">
                 <div class="card-grid">
                     <div class="card dashboard-card">
                         <h3>Total Clientes</h3>
-                        <p class="metric">1,234</p>
+                        <p class="metric"><?php echo $datos['NUM_CLIENTES']; ?></p>
                         <i class="fas fa-users icon-overlay"></i>
                     </div>
                     <div class="card dashboard-card">
                         <h3>Productos en Stock</h3>
-                        <p class="metric">567</p>
+                        <p class="metric"><?php echo $datos['PRODUCTOS_STOCK']; ?></p>
                         <i class="fas fa-boxes icon-overlay"></i>
                     </div>
                     <div class="card dashboard-card">
                         <h3>Ventas Mes</h3>
-                        <p class="metric">$25,000</p>
+                        <p class="metric"><?php echo $datos['VENTAS_MES']; ?></p>
                         <i class="fas fa-chart-line icon-overlay"></i>
                     </div>
                     <div class="card dashboard-card">
-                        <h3>Nuevos Pedidos</h3>
-                        <p class="metric">42</p>
+                        <h3>Deudas activas</h3>
+                        <p class="metric"><?php echo $datos['DEUDAS']; ?></p>
                         <i class="fas fa-receipt icon-overlay"></i>
                     </div>
                 </div>
@@ -91,35 +95,32 @@
                     </div>
                 </div>
                 <div class="table-responsive card">
+                    <?php
+                    ?>
                     <table>
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>Cedula</th>
                                 <th>Nombre</th>
-                                <th>Email</th>
-                                <th>Teléfono</th>
-                                <th>Última Compra</th>
+                                <th>Apellido</th>
+                                <th>Correo</th>
+                                <th>Tipo Usuario</th>
+                                <th>Telefono</th>
+                                <th>Genero</th>
+                                <th>Fecha Nacimiento</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>101</td>
-                                <td>Ana López</td>
-                                <td>ana.l@example.com</td>
-                                <td>+57 310 123 4567</td>
-                                <td>2025-06-20</td>
-                                <td>
-                                    <button class="btn btn-icon btn-edit" data-action="edit" data-target="cliente-modal"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-icon btn-delete"><i class="fas fa-trash-alt"></i></button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>102</td>
-                                <td>Carlos Ruiz</td>
-                                <td>carlos.r@example.com</td>
-                                <td>+57 320 987 6543</td>
-                                <td>2025-06-25</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 <td>
                                     <button class="btn btn-icon btn-edit" data-action="edit" data-target="cliente-modal"><i class="fas fa-edit"></i></button>
                                     <button class="btn btn-icon btn-delete"><i class="fas fa-trash-alt"></i></button>
@@ -256,23 +257,47 @@
         <div class="modal-content card">
             <span class="close-button">&times;</span>
             <h3 class="modal-title">Nuevo Cliente</h3>
-            <form class="admin-form">
+            <form class="admin-form" action="../../Controlador/controler_usuario.php" method="post">
+                <div class="form-group">
+                    <label for="cliente-cedula">Cédula:</label>
+                    <input type="text" id="cliente-cedula" name="cedula" required>
+                </div>
                 <div class="form-group">
                     <label for="cliente-nombre">Nombre:</label>
-                    <input type="text" id="cliente-nombre" required>
+                    <input type="text" id="cliente-nombre" name="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="cliente-apellido">Apellido:</label>
+                    <input type="text" id="cliente-apellido" name="apellido" required>
+                </div>
+                <div class="form-group">
+                    <label for="cliente-contrasena">Contraseña:</label>
+                    <input type="text" id="cliente-contrasena" name="contrasena" required>
                 </div>
                 <div class="form-group">
                     <label for="cliente-email">Email:</label>
-                    <input type="email" id="cliente-email" required>
+                    <input type="email" id="cliente-email" name="correo" required>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" id="tipo_usuario" name="tipo_usuario" value="CLIENTE">
                 </div>
                 <div class="form-group">
                     <label for="cliente-telefono">Teléfono:</label>
-                    <input type="tel" id="cliente-telefono">
+                    <input type="tel" id="cliente-telefono" name="telefono">
                 </div>
                 <div class="form-group">
-                    <label for="cliente-direccion">Dirección:</label>
-                    <input type="text" id="cliente-direccion">
+                    <label for="cliente-genero">Género:</label>
+                    <select id="cliente-genero" name="genero">
+                        <option value="masculino">Masculino</option>
+                        <option value="femenino">Femenino</option>
+                        <option selected value="otro">Otro</option>
+                    </select>
                 </div>
+                <div class="form-group">
+                    <label for="cliente-fecha-nacimiento">Fecha de Nacimiento:</label>
+                    <input type="date" id="cliente-fecha-nacimiento" name="fecha_nacimiento">
+                </div>
+                <input type="hidden" name="accion" value="crear_cliente">
                 <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Guardar Cliente</button>
             </form>
         </div>

@@ -13,7 +13,7 @@
 <body>
     
     <div class="wrapper">
-        <form method="post" action="Controlador/controler_usuario.php">
+        <form method="post" action="../Controlador/controler_usuario.php">
             <h1>Login</h1>
             <div class="input-box">
                 <input type="text" placeholder="Usuario" id="cedula" name="cedula" required>
@@ -23,7 +23,7 @@
                 <input type="password" placeholder="Contraseña" id="contrasena" name="contrasena" required>
                 <i class='bx bxs-lock-alt'></i>
             </div>
-
+                <input type="hidden" name="accion" value="login">
             <div class="remember-forgot">
                 <label><input type="checkbox">Recordarme</label>
                 <a href="">Olvidaste tu contraseña?</a>
