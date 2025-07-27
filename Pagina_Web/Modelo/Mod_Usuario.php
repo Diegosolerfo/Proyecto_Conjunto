@@ -66,5 +66,18 @@
             $sentencia->execute();
             return $sentencia->fetchAll(PDO::FETCH_ASSOC);
         }
+        public function actualizar_cliente(){
+            $conexion = new PDO("mysql:host=localhost;dbname=conjunto", "root");
+            $sentencia = $conexion->prepare("call actualizar_cliente(?,?,?,?,?,?,?,?)");
+            $sentencia->bindParam(1, $this->cedula);
+            $sentencia->bindParam(2, $this->nombre);
+            $sentencia->bindParam(3, $this->apellido);
+            $sentencia->bindParam(4, $this->correo);
+            $sentencia->bindParam(5, $this->telefono);
+            $sentencia->bindParam(6, $this->genero);
+            $sentencia->bindParam(7, $this->fecha_nacimiento);
+            $sentencia->bindParam(8, $this->estado);
+            return $sentencia->execute();
+        }
     }
 ?>

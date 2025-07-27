@@ -1,6 +1,6 @@
 <?php
-    if($_POST['accion'] == 'login'){
-        include '../Modelo/Mod_Usuario.php';
+    include '../Modelo/Mod_Usuario.php';    
+    if($_POST['accion'] == 'login'){    
     $objeto = new usuario(
         cedula: $_POST['cedula'],
         contrasena: $_POST['contrasena']
@@ -21,7 +21,6 @@
         }
     }
     }elseif($_POST['accion'] == 'crear_cliente'){
-        include '../Modelo/Mod_Usuario.php';
         $objeto = new usuario(
             cedula: $_POST['cedula'],
             nombre: $_POST['nombre'],
@@ -40,7 +39,20 @@
             echo "<script>alert('Error al crear el cliente');</script>";
             header('Location: ../Vista/Admin/adminis.php');
         }
-    }elseif($_POST['accion'] == 'ver_clientes'){
-        
-    }
+    }elseif($_POST['accion'] == 'actualizar'){
+        $objeto = new usuario(
+            cedula: $_POST['cedula'],
+            nombre: $_POST['nombre'],
+            apellido: $_POST['apellido'],
+            correo: $_POST['correo'],
+            telefono: $_POST['telefono'],
+            genero: $_POST['genero'],
+            fecha_nacimiento: $_POST['fecha_nacimiento'],
+            estado: $_POST['estado']
+        );
+        $objeto->actualizar_cliente();
+        //var_dump($_POST);
+        header('Location: ../Vista/Admin/adminis.php');
+        echo "<script>alert('Usuario actualizado correctamente');</script>";
+}
 ?>
