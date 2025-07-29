@@ -45,10 +45,10 @@
             $sentencia = $conexion->prepare("call PANEL_ADMIN()");
             $sentencia->execute();
             return $sentencia->fetch(PDO::FETCH_ASSOC);
-        }#------------------------------------------------------------------ CLIENTES
-        public function crear_cliente(){
+        }
+        public function crear_usuario(){
             $conexion = new PDO("mysql:host=localhost;dbname=conjunto", "root");
-            $sentencia = $conexion->prepare("call crear_cliente(?,?,?,?,?,?,?,?,?)");
+            $sentencia = $conexion->prepare("call crear_usuario(?,?,?,?,?,?,?,?,?)");
             $sentencia->bindParam(1, $this->cedula);
             $sentencia->bindParam(2, $this->nombre);
             $sentencia->bindParam(3, $this->apellido);
@@ -60,15 +60,20 @@
             $sentencia->bindParam(9, $this->fecha_nacimiento);
             return $sentencia->execute();
         }
-        public function ver_clientes(){
+        public function ver_usuarios(){
             $conexion = new PDO("mysql:host=localhost;dbname=conjunto", "root");
-            $sentencia = $conexion->prepare("call ver_clientes()");
+            $sentencia = $conexion->prepare("call ver_usuarios()");
+            $sentencia->execute();
+            return $sentencia->fetchAll(PDO::FETCH_ASSOC);
+        }public function ver_usuarios_2(){
+            $conexion = new PDO("mysql:host=localhost;dbname=conjunto", "root");
+            $sentencia = $conexion->prepare("call ver_usuarios_2()");
             $sentencia->execute();
             return $sentencia->fetchAll(PDO::FETCH_ASSOC);
         }
-        public function actualizar_cliente(){
+        public function actualizar_usuario(){
             $conexion = new PDO("mysql:host=localhost;dbname=conjunto", "root");
-            $sentencia = $conexion->prepare("call actualizar_cliente(?,?,?,?,?,?,?,?)");
+            $sentencia = $conexion->prepare("call actualizar_usuario(?,?,?,?,?,?,?,?)");
             $sentencia->bindParam(1, $this->cedula);
             $sentencia->bindParam(2, $this->nombre);
             $sentencia->bindParam(3, $this->apellido);
@@ -78,6 +83,13 @@
             $sentencia->bindParam(7, $this->fecha_nacimiento);
             $sentencia->bindParam(8, $this->estado);
             return $sentencia->execute();
+        }
+        public function eliminar_usuario(){
+            $conexion = new PDO("mysql:host=localhost;dbname=conjunto", "root");
+            $sentencia = $conexion->prepare("call eliminar_usuario(?, @respuesta)");
+            $sentencia->bindParam(1, $this->cedula);
+            $sentencia->execute();
+            return $sentencia->fetchAll(PDO::FETCH_ASSOC);
         }
     }
 ?>
