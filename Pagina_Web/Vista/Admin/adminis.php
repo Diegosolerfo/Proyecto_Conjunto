@@ -6,13 +6,14 @@
     <title>Administración | INNOVAR CAFÉ</title>
     <link rel="stylesheet" href="admin.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
 </head>
 <body>
     <div class="admin-container">
         <aside class="sidebar">
             <div class="sidebar-header">
                 <img src="../Imagenes/Logo_Admin.png" alt="Admin Logo" class="admin-logo">
-                <h2>Admin Café</h2>
+                <h2>Administrador</h2>
             </div>
             <nav class="admin-nav">
                 <ul>
@@ -23,7 +24,7 @@
                         <i class="fas fa-users"></i> Clientes
                     </li>
                     <li class="nav-item" data-tab="vendedores">
-                        <i class="fas fa-user-tie"></i> Vendedores
+                        <i class="fas fa-user-tie"></i> Cajeros
                     </li>
                     <li class="nav-item" data-tab="productos">
                         <i class="fas fa-coffee"></i> Productos
@@ -46,27 +47,33 @@
                     <i class="fas fa-user-circle"></i>
                 </div>
             </header>
-
+            <?php
+            include '../../Modelo/Mod_Usuario.php';
+            $objeto = new usuario();
+            $datos = $objeto->panel_admin();
+            $respuesta = $objeto->ver_usuarios();
+            $respuesta_2 = $objeto->ver_usuarios_2();
+            ?>
             <section id="dashboard" class="tab-content active">
                 <div class="card-grid">
                     <div class="card dashboard-card">
                         <h3>Total Clientes</h3>
-                        <p class="metric">1,234</p>
+                        <p class="metric"><?php echo $datos['NUM_CLIENTES']; ?></p>
                         <i class="fas fa-users icon-overlay"></i>
                     </div>
                     <div class="card dashboard-card">
                         <h3>Productos en Stock</h3>
-                        <p class="metric">567</p>
+                        <p class="metric"><?php echo $datos['PRODUCTOS_STOCK']; ?></p>
                         <i class="fas fa-boxes icon-overlay"></i>
                     </div>
                     <div class="card dashboard-card">
                         <h3>Ventas Mes</h3>
-                        <p class="metric">$25,000</p>
+                        <p class="metric"><?php echo $datos['VENTAS_MES']; ?></p>
                         <i class="fas fa-chart-line icon-overlay"></i>
                     </div>
                     <div class="card dashboard-card">
-                        <h3>Nuevos Pedidos</h3>
-                        <p class="metric">42</p>
+                        <h3>Deudas activas</h3>
+                        <p class="metric"><?php echo $datos['DEUDAS']; ?></p>
                         <i class="fas fa-receipt icon-overlay"></i>
                     </div>
                 </div>
@@ -91,89 +98,120 @@
                     </div>
                 </div>
                 <div class="table-responsive card">
-                    <table>
-                        <thead>
+                    
+                    <table class="table table-bordered table-hover align-middle text-center">
+                        <thead class="bg-success text-white">
                             <tr>
-                                <th>ID</th>
+                                <th>Cedula</th>
                                 <th>Nombre</th>
-                                <th>Email</th>
-                                <th>Teléfono</th>
-                                <th>Última Compra</th>
+                                <th>Apellido</th>
+                                <th>Correo</th>
+                                <th>Telefono</th>
+                                <th>Genero</th>
+                                <th>Fecha Nacimiento</th>
+                                <th>Estado</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>101</td>
-                                <td>Ana López</td>
-                                <td>ana.l@example.com</td>
-                                <td>+57 310 123 4567</td>
-                                <td>2025-06-20</td>
+                            <?php
+                            //var_dump($respuesta); 
+                            foreach ($respuesta as $cliente) {
+                            ?>
+                            <form action="../../Controlador/controler_usuario.php" method="post">
+                                <tr>
+                                <td><input type="number" class="form-control" min="100000" max="99999999999" readonly name="cedula" value="<?php echo $cliente['CEDULA']; ?>"></td>
+                                <td><input type="text" class="form-control " name="nombre" minlength="3" maxlength="25" value="<?php echo $cliente['NOMBRE']; ?>" required></td>
+                                <td><input type="text" class="form-control " name="apellido" minlength="3" maxlength="25" value="<?php echo $cliente['APELLIDO']; ?>" required></td>
+                                <td><input type="email" class="form-control" name="correo" maxlength="50" value="<?php echo $cliente['CORREO']; ?>" required></td>
+                                <td><input type="number" class="form-control border" name="telefono" min="2000000000" max="3999999999" value="<?php echo $cliente['TELEFONO']; ?>" required></td>
                                 <td>
-                                    <button class="btn btn-icon btn-edit" data-action="edit" data-target="cliente-modal"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-icon btn-delete"><i class="fas fa-trash-alt"></i></button>
+                                    <select name="genero" id="genero" class="form-select" required>
+                                        <option value="MASCULINO" <?php if($cliente['GENERO'] == 'MASCULINO') echo 'selected'; ?>>Masculino</option>
+                                        <option value="FEMENINO" <?php if($cliente['GENERO'] == 'FEMENINO') echo 'selected'; ?>>Femenino</option>
+                                        <option value="OTRO" <?php if($cliente['GENERO'] == 'OTRO') echo 'selected'; ?>>Otro</option>
+                                    </select>
+                                </td>
+                                <td><input type="date" class="form-control" name="fecha_nacimiento" value="<?php echo $cliente['FECHA_NACIMIENTO']; ?>" required></td>
+                                <td>
+                                    <select name="estado" id="estado" class="form-select " required>
+                                        <option value="ACTIVO" <?php if($cliente['ESTADO'] == 'ACTIVO') echo 'selected'; ?>>Activo</option>
+                                        <option value="INACTIVO" <?php if($cliente['ESTADO'] == 'INACTIVO') echo 'selected'; ?>>Inactivo</option>
+                                    </select>
+                                </td>
+                                <td>
+                                        <button class="btn btn-icon btn-edit" name="accion" value="actualizar"><i class="fas fa-edit"></i></button>
+                                        <button class="btn btn-icon" name="accion" value="eliminar"><i class="fas fa-trash-alt"></i></button>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>102</td>
-                                <td>Carlos Ruiz</td>
-                                <td>carlos.r@example.com</td>
-                                <td>+57 320 987 6543</td>
-                                <td>2025-06-25</td>
-                                <td>
-                                    <button class="btn btn-icon btn-edit" data-action="edit" data-target="cliente-modal"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-icon btn-delete"><i class="fas fa-trash-alt"></i></button>
-                                </td>
-                            </tr>
+                            </form>
+                            <?php
+                            }
+                            ?>
                             </tbody>
                     </table>
                 </div>
             </section>
 
             <section id="vendedores" class="tab-content">
-                <h2>Gestión de Vendedores</h2>
+                <h2>Gestión de Cajeros</h2>
                 <div class="controls">
-                    <button class="btn btn-primary" data-action="create" data-target="vendedor-modal"><i class="fas fa-user-plus"></i> Nuevo Vendedor</button>
+                    <button class="btn btn-primary" data-action="create" data-target="cajero-modal"><i class="fas fa-user-plus"></i> Nuevo Cajero</button>
                     <div class="search-box">
-                        <input type="text" placeholder="Buscar vendedor...">
+                        <input type="text" placeholder="Buscar cajero...">
                         <i class="fas fa-search"></i>
                     </div>
                 </div>
                 <div class="table-responsive card">
-                    <table>
-                        <thead>
+                    <table class="table table-bordered table-hover align-middle text-center">
+                        <thead class="bg-success text-white">
                             <tr>
-                                <th>ID</th>
+                                <th>Cedula</th>
                                 <th>Nombre</th>
-                                <th>Email</th>
-                                <th>Teléfono</th>
-                                <th>Fecha Contrato</th>
+                                <th>Apellido</th>
+                                <th>Correo</th>
+                                <th>Telefono</th>
+                                <th>Genero</th>
+                                <th>Fecha Nacimiento</th>
+                                <th>Estado</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>201</td>
-                                <td>Laura García</td>
-                                <td>laura.g@innovar.com</td>
-                                <td>+57 300 111 2233</td>
-                                <td>2024-01-15</td>
+                            <?php
+                            //var_dump($respuesta); 
+                            foreach ($respuesta_2 as $cajero) {
+                            ?>
+                            <form action="../../Controlador/controler_usuario.php" method="post">
+                                <tr>
+                                <td><input type="number" class="form-control" min="100000" max="99999999999" readonly name="cedula" value="<?php echo $cajero['CEDULA']; ?>"></td>
+                                <td><input type="text" class="form-control " name="nombre" minlength="3" maxlength="25" value="<?php echo $cajero['NOMBRE']; ?>" required></td>
+                                <td><input type="text" class="form-control " name="apellido" minlength="3" maxlength="25" value="<?php echo $cajero['APELLIDO']; ?>" required></td>
+                                <td><input type="email" class="form-control" name="correo" maxlength="50" value="<?php echo $cajero['CORREO']; ?>" required></td>
+                                <td><input type="number" class="form-control border" name="telefono" min="2000000000" max="3999999999" value="<?php echo $cajero['TELEFONO']; ?>" required></td>
                                 <td>
-                                    <button class="btn btn-icon btn-edit" data-action="edit" data-target="vendedor-modal"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-icon btn-delete"><i class="fas fa-trash-alt"></i></button>
+                                    <select name="genero" id="genero" class="form-select" required>
+                                        <option value="MASCULINO" <?php if($cajero['GENERO'] == 'MASCULINO') echo 'selected'; ?>>Masculino</option>
+                                        <option value="FEMENINO" <?php if($cajero['GENERO'] == 'FEMENINO') echo 'selected'; ?>>Femenino</option>
+                                        <option value="OTRO" <?php if($cajero['GENERO'] == 'OTRO') echo 'selected'; ?>>Otro</option>
+                                    </select>
+                                </td>
+                                <td><input type="date" class="form-control" name="fecha_nacimiento" value="<?php echo $cajero['FECHA_NACIMIENTO']; ?>" required></td>
+                                <td>
+                                    <select name="estado" id="estado" class="form-select " required>
+                                        <option value="ACTIVO" <?php if($cajero['ESTADO'] == 'ACTIVO') echo 'selected'; ?>>Activo</option>
+                                        <option value="INACTIVO" <?php if($cajero['ESTADO'] == 'INACTIVO') echo 'selected'; ?>>Inactivo</option>
+                                    </select>
+                                </td>
+                                <td>
+                                        <button class="btn btn-icon btn-edit" name="accion" value="actualizar"><i class="fas fa-edit"></i></button>
+                                        <button class="btn btn-icon" name="accion" value="eliminar"><i class="fas fa-trash-alt"></i></button>
                                 </td>
                             </tr>
-                            <tr>
-                                <td>202</td>
-                                <td>Pedro Martínez</td>
-                                <td>pedro.m@innovar.com</td>
-                                <td>+57 301 444 5566</td>
-                                <td>2023-08-01</td>
-                                <td>
-                                    <button class="btn btn-icon btn-edit" data-action="edit" data-target="vendedor-modal"><i class="fas fa-edit"></i></button>
-                                    <button class="btn btn-icon btn-delete"><i class="fas fa-trash-alt"></i></button>
-                                </td>
-                            </tr>
+                            </form>
+                            <?php
+                            }
+                            ?>
                             </tbody>
                     </table>
                 </div>
@@ -256,49 +294,102 @@
         <div class="modal-content card">
             <span class="close-button">&times;</span>
             <h3 class="modal-title">Nuevo Cliente</h3>
-            <form class="admin-form">
+            <form class="admin-form" action="../../Controlador/controler_usuario.php" method="post">
+                <div class="form-group">
+                    <label for="cliente-cedula">Cédula:</label>
+                    <input type="text" id="cliente-cedula" name="cedula" required>
+                </div>
                 <div class="form-group">
                     <label for="cliente-nombre">Nombre:</label>
-                    <input type="text" id="cliente-nombre" required>
+                    <input type="text" id="cliente-nombre" name="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="cliente-apellido">Apellido:</label>
+                    <input type="text" id="cliente-apellido" name="apellido" required>
+                </div>
+                <div class="form-group">
+                    <label for="cliente-contrasena">Contraseña:</label>
+                    <input type="text" id="cliente-contrasena" name="contrasena" required>
                 </div>
                 <div class="form-group">
                     <label for="cliente-email">Email:</label>
-                    <input type="email" id="cliente-email" required>
+                    <input type="email" id="cliente-email" name="correo" required>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" id="cliente-email" name="tipo_usuario" value="CLIENTE" readonly>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" id="tipo_usuario" name="tipo_usuario" value="CLIENTE">
                 </div>
                 <div class="form-group">
                     <label for="cliente-telefono">Teléfono:</label>
-                    <input type="tel" id="cliente-telefono">
+                    <input type="tel" id="cliente-telefono" name="telefono">
                 </div>
                 <div class="form-group">
-                    <label for="cliente-direccion">Dirección:</label>
-                    <input type="text" id="cliente-direccion">
+                    <label for="cliente-genero">Género:</label>
+                    <select id="cliente-genero" name="genero">
+                        <option value="masculino">Masculino</option>
+                        <option value="femenino">Femenino</option>
+                        <option selected value="otro">Otro</option>
+                    </select>
                 </div>
+                <div class="form-group">
+                    <label for="cliente-fecha-nacimiento">Fecha de Nacimiento:</label>
+                    <input type="date" id="cliente-fecha-nacimiento" name="fecha_nacimiento">
+                </div>
+                <input type="hidden" name="accion" value="crear_cliente">
                 <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Guardar Cliente</button>
             </form>
         </div>
     </div>
-
-    <div id="vendedor-modal" class="modal">
+    <div id="cajero-modal" class="modal">
         <div class="modal-content card">
             <span class="close-button">&times;</span>
-            <h3 class="modal-title">Nuevo Vendedor</h3>
-            <form class="admin-form">
+            <h3 class="modal-title">Nuevo cajero</h3>
+            <form class="admin-form" action="../../Controlador/controler_usuario.php" method="post">
                 <div class="form-group">
-                    <label for="vendedor-nombre">Nombre:</label>
-                    <input type="text" id="vendedor-nombre" required>
+                    <label for="cajero-cedula">Cédula:</label>
+                    <input type="text" id="cajero-cedula" name="cedula" required>
                 </div>
                 <div class="form-group">
-                    <label for="vendedor-email">Email:</label>
-                    <input type="email" id="vendedor-email" required>
+                    <label for="cajero-nombre">Nombre:</label>
+                    <input type="text" id="cajero-nombre" name="nombre" required>
                 </div>
                 <div class="form-group">
-                    <label for="vendedor-telefono">Teléfono:</label>
-                    <input type="tel" id="vendedor-telefono">
+                    <label for="cajero-apellido">Apellido:</label>
+                    <input type="text" id="cajero-apellido" name="apellido" required>
                 </div>
                 <div class="form-group">
-                    <label for="vendedor-cedula">Cédula:</label>
-                    <input type="text" id="vendedor-cedula">
+                    <label for="cajero-contrasena">Contraseña:</label>
+                    <input type="text" id="cajero-contrasena" name="contrasena" required>
                 </div>
+                <div class="form-group">
+                    <label for="cajero-email">Email:</label>
+                    <input type="email" id="cajero-email" name="correo" required>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" id="cajero-email" name="tipo_usuario" value="CAJERO" readonly>
+                </div>
+                <div class="form-group">
+                    <input type="hidden" id="tipo_usuario" name="tipo_usuario" value="CAJERO">
+                </div>
+                <div class="form-group">
+                    <label for="cajero-telefono">Teléfono:</label>
+                    <input type="tel" id="cajero-telefono" name="telefono">
+                </div>
+                <div class="form-group">
+                    <label for="cajero-genero">Género:</label>
+                    <select id="cajero-genero" name="genero">
+                        <option value="masculino">Masculino</option>
+                        <option value="femenino">Femenino</option>
+                        <option selected value="otro">Otro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="cajero-fecha-nacimiento">Fecha de Nacimiento:</label>
+                    <input type="date" id="cajero-fecha-nacimiento" name="fecha_nacimiento">
+                </div>
+                <input type="hidden" name="accion" value="crear_usuario">
                 <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Guardar Vendedor</button>
             </form>
         </div>
