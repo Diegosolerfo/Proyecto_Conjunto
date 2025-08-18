@@ -337,7 +337,7 @@
                     <label for="cliente-fecha-nacimiento">Fecha de Nacimiento:</label>
                     <input type="date" id="cliente-fecha-nacimiento" name="fecha_nacimiento">
                 </div>
-                <input type="hidden" name="accion" value="crear_cliente">
+                <input type="hidden" name="accion" value="crear_usuario">
                 <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Guardar Cliente</button>
             </form>
         </div>
@@ -399,14 +399,14 @@
         <div class="modal-content card">
             <span class="close-button">&times;</span>
             <h3 class="modal-title">Nuevo Producto</h3>
-            <form class="admin-form">
+            <form class="admin-form" method="post">
                 <div class="form-group">
                     <label for="producto-nombre">Nombre:</label>
-                    <input type="text" id="producto-nombre" required>
+                    <input type="text" id="producto-nombre" name="nombre" required>
                 </div>
                 <div class="form-group">
                     <label for="producto-categoria">Categoría:</label>
-                    <select id="producto-categoria" required>
+                    <select id="producto-categoria" name="categoria" required>
                         <option value="">Seleccione</option>
                         <option value="Granos de Origen">Granos de Origen</option>
                         <option value="Máquinas de Café">Máquinas de Café</option>
@@ -416,15 +416,15 @@
                 </div>
                 <div class="form-group">
                     <label for="producto-precio">Precio:</label>
-                    <input type="number" id="producto-precio" step="1000" min="0" required>
+                    <input type="number" id="producto-precio" name="precio" step="1000" min="0" required>
                 </div>
                 <div class="form-group">
                     <label for="producto-stock">Stock:</label>
-                    <input type="number" id="producto-stock" min="0" required>
+                    <input type="number" id="producto-stock" name="stock" min="0" required>
                 </div>
                 <div class="form-group">
                     <label for="producto-descripcion">Descripción:</label>
-                    <textarea id="producto-descripcion" rows="3"></textarea>
+                    <textarea id="producto-descripcion" name="descripcion" rows="3"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Guardar Producto</button>
             </form>

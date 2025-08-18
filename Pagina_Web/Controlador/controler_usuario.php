@@ -21,6 +21,7 @@
         }
     }
     }elseif($_POST['accion'] == 'crear_usuario'){
+        var_dump($_POST);
         $objeto = new usuario(
             cedula: $_POST['cedula'],
             nombre: $_POST['nombre'],
@@ -71,4 +72,5 @@
                 </script>";
         }
     }
+    var_dump($_POST);
 ?>

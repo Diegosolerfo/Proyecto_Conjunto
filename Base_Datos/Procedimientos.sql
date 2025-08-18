@@ -41,7 +41,7 @@ BEGIN
     VALUES (CEDULA_P,NOMBRE_P,APELLIDO_P,CONTRASENA_P,CORREO_P,TIPO_USUARIO_P,TELEFONO_P,GENERO_P,FECHA_NAC_P);
 END//
 DELIMITER ;
-CALL crear_usuario(4512364789, 'usuario', 'prueba', 'contra_prueba','correo_prueba@hotmail.com','CLIENTE','3238649182','otro','2000-01-03');
+-- CALL crear_usuario(4512364789, 'usuario', 'prueba', 'contra_prueba','correo_prueba@hotmail.com','CLIENTE','3238649182','otro','2000-01-03');
 -- DROP PROCEDURE crear_usuario;
 DELIMITER //
 CREATE PROCEDURE ver_usuarios()
@@ -49,7 +49,7 @@ BEGIN
 	SELECT CEDULA,NOMBRE,APELLIDO,CORREO,TELEFONO,GENERO,FECHA_NACIMIENTO,ESTADO FROM USUARIO WHERE TIPO_USUARIO = 'CLIENTE';
 END//
 DELIMITER ;
-CALL ver_usuario;
+CALL ver_usuarios;
 -- DROP PROCEDURE ver_usuarios;
 DELIMITER //
 CREATE PROCEDURE ver_usuarios_2()
@@ -96,9 +96,8 @@ BEGIN
     SELECT MENSAJE as mensaje;
 END//
 DELIMITER ;
-DROP PROCEDURE eliminar_usuario;
+# DROP PROCEDURE eliminar_usuario;
 CALL eliminar_usuario('1234587642',@hola);
-
 DELIMITER //
 CREATE FUNCTION DeudaConMora(CEDULA BIGINT)
 RETURNS DECIMAL(10,2)
