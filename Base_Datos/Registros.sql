@@ -1,6 +1,6 @@
-INSERT INTO USUARIO(CEDULA,NOMBRE,APELLIDO,CONTRASENA,CORREO,TIPO_USUARIO,ESTADO,TELEFONO,GENERO,FECHA_NACIMIENTO)
+INSERT INTO USUARIO(CEDULA,NOMBRE,APELLIDO,CLAVE,CORREO,TIPO_USUARIO,ESTADO,TELEFONO,GENERO,FECHA_NACIMIENTO)
 VALUES 
-(1147484290,'Diego Alejandro','Soler Fonseca','developer.admin','diego.soler.admin@gmail.com','ADMINISTRADOR','ACTIVO',3125565319,'MASCULINO','2005-05-16'),
+(1147484290,'Diego Alejandro','Soler Fonseca','soler123','diego.soler.admin@gmail.com','ADMINISTRADOR','ACTIVO',3125565319,'MASCULINO','2005-05-16'),
 (1034785120,'Daniel Felipe','Chica Feria','Chica.admin','daniel.chica.admin@gmail.com','ADMINISTRADOR','ACTIVO',3109876543,'MASCULINO','2005-05-16'),
 (4521876531,'Juan Camilo','Giraldo Leon','leon.admin','juan.camilo@gmail.com','ADMINISTRADOR','ACTIVO',3152345678,'MASCULINO','2005-05-16'),
 (1234587642,'Fernando Andres','Villegas Vargas','superdeveloper','fernando.villegas@gmail.com','CAJERO','ACTIVO',3001234567,'MASCULINO','2005-05-16'),

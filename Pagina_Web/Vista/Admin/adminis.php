@@ -48,11 +48,12 @@
                 </div>
             </header>
             <?php
-            include '../../Modelo/Mod_Usuario.php';
-            $objeto = new usuario();
-            $datos = $objeto->panel_admin();
-            $respuesta = $objeto->ver_usuarios();
-            $respuesta_2 = $objeto->ver_usuarios_2();
+            include '../../Modelo/usuariodao.php';
+            $usuariodao = new usuariodao();
+            $datos = $usuariodao->panel_admin();
+            //var_dump($usuariodao);
+            $respuesta = $usuariodao->ver_usuarios();
+            $respuesta_2 = $usuariodao->ver_usuarios_2();
             ?>
             <section id="dashboard" class="tab-content active">
                 <div class="card-grid">
@@ -308,8 +309,8 @@
                     <input type="text" id="cliente-apellido" name="apellido" required>
                 </div>
                 <div class="form-group">
-                    <label for="cliente-contrasena">Contraseña:</label>
-                    <input type="text" id="cliente-contrasena" name="contrasena" required>
+                    <label for="cliente-clave">clave:</label>
+                    <input type="text" id="cliente-clave" name="clave" required>
                 </div>
                 <div class="form-group">
                     <label for="cliente-email">Email:</label>
@@ -349,7 +350,7 @@
             <form class="admin-form" action="../../Controlador/controler_usuario.php" method="post">
                 <div class="form-group">
                     <label for="cajero-cedula">Cédula:</label>
-                    <input type="text" id="cajero-cedula" name="cedula" required>
+                    <input type="number" id="cajero-cedula" name="cedula" required>
                 </div>
                 <div class="form-group">
                     <label for="cajero-nombre">Nombre:</label>
@@ -360,22 +361,19 @@
                     <input type="text" id="cajero-apellido" name="apellido" required>
                 </div>
                 <div class="form-group">
-                    <label for="cajero-contrasena">Contraseña:</label>
-                    <input type="text" id="cajero-contrasena" name="contrasena" required>
+                    <label for="cajero-clave">Clave:</label>
+                    <input type="text" id="cajero-clave" name="clave" required>
                 </div>
                 <div class="form-group">
                     <label for="cajero-email">Email:</label>
                     <input type="email" id="cajero-email" name="correo" required>
                 </div>
                 <div class="form-group">
-                    <input type="hidden" id="cajero-email" name="tipo_usuario" value="CAJERO" readonly>
-                </div>
-                <div class="form-group">
                     <input type="hidden" id="tipo_usuario" name="tipo_usuario" value="CAJERO">
                 </div>
                 <div class="form-group">
                     <label for="cajero-telefono">Teléfono:</label>
-                    <input type="tel" id="cajero-telefono" name="telefono">
+                    <input type="number" id="cajero-telefono" name="telefono">
                 </div>
                 <div class="form-group">
                     <label for="cajero-genero">Género:</label>
@@ -390,7 +388,7 @@
                     <input type="date" id="cajero-fecha-nacimiento" name="fecha_nacimiento">
                 </div>
                 <input type="hidden" name="accion" value="crear_usuario">
-                <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Guardar Vendedor</button>
+                <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Guardar Cajero</button>
             </form>
         </div>
     </div>
