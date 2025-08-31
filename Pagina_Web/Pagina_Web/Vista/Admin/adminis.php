@@ -29,6 +29,9 @@
                     <li class="nav-item" data-tab="productos">
                         <i class="fas fa-coffee"></i> Productos
                     </li>
+                        <li class="nav-item" data-tab="inventario">
+                        <i class="fas fa-users"></i> Inventario
+                    </li>
                     <li class="nav-item" data-tab="ajustes">
                         <i class="fas fa-cogs"></i> Ajustes
                     </li>
@@ -157,9 +160,9 @@
             <section id="vendedores" class="tab-content">
                 <h2>Gestión de Cajeros</h2>
                 <div class="controls">
-                    <button class="btn btn-primary" data-action="create" data-target="cajero-modal"><i class="fas fa-user-plus"></i> Nuevo Cajero</button>
+                    <button class="btn btn-primary" data-action="create" data-target="inventario$inventario-modal"><i class="fas fa-user-plus"></i> Nuevo Cajero</button>
                     <div class="search-box">
-                        <input type="text" placeholder="Buscar cajero...">
+                        <input type="text" placeholder="Buscar inventario$inventario...">
                         <i class="fas fa-search"></i>
                     </div>
                 </div>
@@ -267,6 +270,66 @@
                 </div>
             </section>
 
+            <section id="inventario" class="tab-content">
+                <h2>Gestión de Inventario</h2>
+                <?php
+                include '../../Modelo/InventarioDAO.php';
+                $inventarioDAO = new InventarioDAO();
+                $inventario = $inventarioDAO->ver_inventario();
+?>
+                <div class="controls">
+                    <button class="btn btn-primary" data-action="modal" data-target="#inventario-modal"> <i class="fas fa-user-plus"></i> Nuevo Inventario</button>           <div class="search-box">
+                    
+                    <input type="text" placeholder="Buscar inventario...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+                <div class="table-responsive card">
+                    <table class="table table-bordered table-hover align-middle text-center">
+                        <thead class="bg-success text-white">
+                            <tr>
+                                <th>ID_INVE</th>
+                                <th>ID_Item</th>
+                                <th>Ubicacion</th>
+                                <th>Cantidad</th>
+                                <th>Especificaciones</th>
+                                <th>Fecha_Vencimiento</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+    <?php
+    foreach ($inventario as $item) {
+    ?>
+    <form action="../../Controlador/Controlador_Inventario.php" method="post">
+        <tr>
+            <td><input type="number" class="form-control" readonly name="id_inve" value="<?php echo $item['ID_INVE']; ?>"></td>
+            <td><input type="number" class="form-control" readonly name="id_item" value="<?php echo $item['ID_ITEM']; ?>"></td>
+            <td><input type="text" class="form-control" name="ubicacion" value="<?php echo $item['UBICACION']; ?>" required></td>
+            <td><input type="number" class="form-control" name="cantidad" value="<?php echo $item['CANTIDAD']; ?>" required></td>
+            <td><input type="text" class="form-control" name="especificaciones" value="<?php echo $item['ESPECIFICACIONES']; ?>" required></td>
+            <td><input type="date" class="form-control" name="fecha_vencimiento" value="<?php echo $item['FECHA_VENCIMIENTO']; ?>" required></td>
+            <td>
+                <select name="estado" class="form-select" required>
+                    <option value="DISPONIBLE" <?php if($item['ESTADO'] == 'DISPONIBLE') echo 'selected'; ?>>Disponible</option>
+                    <option value="NO DISPONIBLE" <?php if($item['ESTADO'] == 'NO DISPONIBLE') echo 'selected'; ?>>No disponible</option>
+                </select>
+            </td>
+            <td>
+                <button class="btn btn-icon btn-edit" name="accion" value="actualizar"><i class="fas fa-edit"></i></button>
+                <button class="btn btn-icon" name="accion" value="eliminar"><i class="fas fa-trash-alt"></i></button>
+            </td>
+        </tr>
+    </form>
+    <?php
+    }
+    ?>
+</tbody>
+                    </table>
+                </div>
+            </section>
+
             <section id="ajustes" class="tab-content">
                 <h2>Configuración del Sistema</h2>
                 <div class="card">
@@ -343,53 +406,35 @@
             </form>
         </div>
     </div>
-    <div id="cajero-modal" class="modal">
+    <div id="#inventario-modal" class="modal">
         <div class="modal-content card">
             <span class="close-button">&times;</span>
-            <h3 class="modal-title">Nuevo cajero</h3>
-            <form class="admin-form" action="../../Controlador/controler_usuario.php" method="post">
-                <div class="form-group">
-                    <label for="cajero-cedula">Cédula:</label>
-                    <input type="number" id="cajero-cedula" name="cedula" required>
-                </div>
-                <div class="form-group">
-                    <label for="cajero-nombre">Nombre:</label>
-                    <input type="text" id="cajero-nombre" name="nombre" required>
-                </div>
-                <div class="form-group">
-                    <label for="cajero-apellido">Apellido:</label>
-                    <input type="text" id="cajero-apellido" name="apellido" required>
-                </div>
-                <div class="form-group">
-                    <label for="cajero-clave">Clave:</label>
-                    <input type="text" id="cajero-clave" name="clave" required>
-                </div>
-                <div class="form-group">
-                    <label for="cajero-email">Email:</label>
-                    <input type="email" id="cajero-email" name="correo" required>
-                </div>
-                <div class="form-group">
-                    <input type="hidden" id="tipo_usuario" name="tipo_usuario" value="CAJERO">
-                </div>
-                <div class="form-group">
-                    <label for="cajero-telefono">Teléfono:</label>
-                    <input type="number" id="cajero-telefono" name="telefono">
-                </div>
-                <div class="form-group">
-                    <label for="cajero-genero">Género:</label>
-                    <select id="cajero-genero" name="genero">
-                        <option value="masculino">Masculino</option>
-                        <option value="femenino">Femenino</option>
-                        <option selected value="otro">Otro</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="cajero-fecha-nacimiento">Fecha de Nacimiento:</label>
-                    <input type="date" id="cajero-fecha-nacimiento" name="fecha_nacimiento">
-                </div>
-                <input type="hidden" name="accion" value="crear_usuario">
-                <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Guardar Cajero</button>
-            </form>
+            <h3 class="modal-title">Nuevo inventario</h3>
+    <form class="admin-form" action="../../Controlador/Controlador_Inventario.php" method="post">
+    <div class="form-group">
+        <label for="inventario-item">ID_Item:</label>
+        <input type="number" id="id_item" name="id_item" required>
+    </div>
+    <div class="form-group">
+        <label for="inventario-ubicacion">Ubicacion:</label>
+        <input type="text" id="ubicacion" name="ubicacion" required>
+    </div>
+    <div class="form-group">
+        <label for="inventario-cantidad">Cantidad:</label>
+        <input type="number" id="cantidad" name="cantidad" required>
+    </div>
+    <div class="form-group">
+        <label for="inventario-especificaciones">Especificaciones:</label>
+        <input type="text" id="especificaciones" name="especificaciones" required>
+    </div>
+    <div class="form-group">
+        <label for="inventario-fecha">Fecha Vencimiento:</label>
+        <input type="date" id="fecha_vencimiento" name="fecha_vencimiento" required>
+    </div>
+    <input type="hidden" name="accion" value="crear_inventario">
+    <input type="hidden" name="estado" value="DISPONIBLE">
+    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Guardar Inventario</button>
+</form>
         </div>
     </div>
 
