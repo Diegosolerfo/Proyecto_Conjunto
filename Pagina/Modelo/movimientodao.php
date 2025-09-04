@@ -1,69 +1,40 @@
 <?php
     require_once 'conexion.php';
-    require_once 'usuariodto.php';
+    require_once 'movimientodto.php';    
 
-    class usuariodao{
-        public function iniciar_sesion(usuariodto $usuariodto){
+    class movimientodao{
+        public function crear_usuario(movimientodto $movimientodto){
             $conexion = Conexion::getConexion();
-            $sql = "SELECT * FROM usuario WHERE cedula=? AND clave=?";
+            $sql = "INSERT INTO USUARIO (VALOR_MOVIMIENTO, FECHA_MOVIMIENTO, OBSERVACIONES, DESCUENTO, TIPO_MOVIMIENTO, ESTADO_MOVIMIENTO, CLIENTE)
+                    VALUES (?,?,?,?,?,?,?);";
+            $id_movimiento = $movimientodto->getid();
+            $fecha_movimiento = $movimientodto->getfecha_movimiento();
+            $observaciones = $movimientodto->getobervaciones();
+            $valor_movimiento = $movimientodto->getvalor_movimiento();
+            $descuento = $movimientodto->getdescuento();
+            $tipo_movimiento = $movimientodto->gettipo_movimiento();
+            $estado_movimiento = $movimientodto->getestado_movimiento();
+            $cliente = $movimientodto->getcliente();
             try{
                 $stmt = $conexion->prepare($sql);
-                $cedula = $usuariodto->getcedula();
-                $clave = $usuariodto->getclave();
-                $stmt->bindParam(1,$cedula);
-                $stmt->bindParam(2,$clave);
-                $stmt->execute();
-                return $stmt->fetch();
-            }catch(PDOException $e){
-                return null;
-            }
-        }
-        public function panel_admin(){
-            $conexion = Conexion::getConexion();
-            try{
-                $sql = "CALL PANEL_ADMIN();";
-                $stm = $conexion->prepare($sql);
-                $stm->execute();
-                return $stm->fetch();
-            }catch(Exception $e){
-                $mensaje = "Error en la consulta: ". $e->getMessage();
-            }
-        }
-        public function crear_usuario(usuariodto $usuariodto){
-            $conexion = Conexion::getConexion();
-            $sql = "INSERT INTO USUARIO (CEDULA,NOMBRE,APELLIDO,CLAVE,CORREO,TIPO_USUARIO,TELEFONO,GENERO,FECHA_NACIMIENTO)
-                    VALUES (?,?,?,?,?,?,?,?,?);";
-            $cedula = $usuariodto->getcedula();
-            $nombre = $usuariodto->getnombre();
-            $apellido = $usuariodto->getapellido();
-            $clave = $usuariodto->getclave();
-            $correo = $usuariodto->getcorreo();
-            $tipo_usuario = $usuariodto->gettipo_usuario();
-            $telefono = $usuariodto->gettelefono();
-            $genero = $usuariodto->getgenero();
-            $fecha_nacimiento = $usuariodto->getfecha_nacimiento();
-            try{
-                $stmt = $conexion->prepare($sql);
-                $stmt->bindParam(1,$cedula);
-                $stmt->bindParam(2,$nombre);
-                $stmt->bindParam(3,$apellido);
-                $stmt->bindParam(4,$clave);
-                $stmt->bindParam(5,$correo);
-                $stmt->bindParam(6,$tipo_usuario);
-                $stmt->bindParam(7,$telefono);
-                $stmt->bindParam(8,$genero);
-                $stmt->bindParam(9,$fecha_nacimiento);
+                $stmt->bindParam(1,$fecha_movimiento);
+                $stmt->bindParam(2,$observaciones);
+                $stmt->bindParam(3,$valor_movimiento);
+                $stmt->bindParam(4,$descuento);
+                $stmt->bindParam(5,$tipo_movimiento);
+                $stmt->bindParam(6,$estado_movimiento);
+                $stmt->bindParam(7,$cliente);
                 return $stmt->execute();
-                $mensaje = "Persona registrada correctamente";
+                $mensaje = "Movimiento registrada correctamente";
             }catch(PDOException $e){
-                $mensaje = "Error al registrar persona: " . $e->getMessage();
+                $mensaje = "Error al registrar movimiento: " . $e->getMessage();
             }
             return $mensaje;
         }
-        public function ver_usuarios(){
+        public function ver_movimientos(){
             $conexion = Conexion::getConexion();
             try{
-                $sql = "SELECT CEDULA,NOMBRE,APELLIDO,CORREO,TELEFONO,GENERO,FECHA_NACIMIENTO,ESTADO FROM USUARIO WHERE TIPO_USUARIO = 'CLIENTE';";
+                $sql = "SELECT * FROM MOVIMIENTO;";
                 $stm = $conexion->prepare($sql);
                 $stm->execute();
             return $stm->fetchAll();

@@ -1,6 +1,5 @@
 <?php
  class InventarioDTO{
-    private $ID_INV;
     private $ID_ITEM;
     private $UBICACION;
     private $CANTIDAD;
@@ -8,12 +7,6 @@
     private $FECHA_VENCIMIENTO;
     private $ESTADO;
 
-    public function getID_INV(){
-        return $this->ID_INV;
-    }
-    public function setID_INV($ID_INV){
-        $this->ID_INV = $ID_INV;
-    }
     public function getID_ITEM(){
         return $this->ID_ITEM;
     }
@@ -51,4 +44,3 @@
         $this->ESTADO = $ESTADO;
     }
 }
-?>

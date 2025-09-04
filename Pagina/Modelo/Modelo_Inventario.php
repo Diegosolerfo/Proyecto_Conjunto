@@ -19,7 +19,7 @@ class Modelo_Inventario {
 
     $conexion = new PDO("mysql:host=localhost;dbname=CONJUNTO", "root");
         $sentencia = $conexion->prepare("call RINVENTARIO(?,?,?,?,?)");
-        $sentencia->bindParam(1, $this->ID_ITEM);//LLAVE FORENEA
+        $sentencia->bindParam(1, $this->ID_ITEM);
         $sentencia->bindParam(2, $this->UBICACION);
         $sentencia->bindParam(3, $this->CANTIDAD);
         $sentencia->bindParam(4, $this->ESPECIFICACIONES);
@@ -78,4 +78,3 @@ public function General_Inventario(){
     }
 
 }
-?>  

@@ -1,19 +1,21 @@
 <?php
-require_once("../Modelo/InventarioDTO.php");
-require_once("../Modelo/InventarioDAO.php");
+    require_once '../Modelo/conexion.php';    
+    require_once "../Modelo/InventarioDTO.php";
+    require_once "../Modelo/InventarioDAO.php";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $accion = $_POST['accion'];
 
     if ($accion == 'crear_inventario') {
+    
     $inventarioDTO = new InventarioDTO();
     $inventarioDTO->setID_ITEM($_POST['id_item']);
     $inventarioDTO->setUBICACION($_POST['ubicacion']);
     $inventarioDTO->setCANTIDAD($_POST['cantidad']);
     $inventarioDTO->setESPECIFICACIONES($_POST['especificaciones']);
     $inventarioDTO->setFECHA_VENCIMIENTO($_POST['fecha_vencimiento']);
-    $inventarioDTO->setESTADO(isset($_POST['estado']) ? $_POST['estado'] : 'DISPONIBLE');
-        
+    $inventarioDTO->setESTADO($_POST['estado']);
+
     $inventarioDAO = new InventarioDAO();
     $resultado = $inventarioDAO->registrar_inventario($inventarioDTO);
 
@@ -32,7 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } 
     elseif ($accion == 'actualizar') {
     $inventarioDTO = new InventarioDTO();
-    $inventarioDTO->setID_INV($_POST['id_inve']); // <--- CORRECTO
     $inventarioDTO->setID_ITEM($_POST['id_item']);
     $inventarioDTO->setUBICACION($_POST['ubicacion']);
     $inventarioDTO->setCANTIDAD($_POST['cantidad']);
@@ -56,4 +57,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit();
 }
 }
-?>

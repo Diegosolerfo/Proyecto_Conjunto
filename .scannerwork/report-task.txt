@@ -1,0 +1,6 @@
+projectKey=Proyecto_Conjunto
+serverUrl=http://localhost:9000
+serverVersion=25.8.0.112029
+dashboardUrl=http://localhost:9000/dashboard?id=Proyecto_Conjunto
+ceTaskId=75d0d715-a3c1-4c3a-bc41-69e69a9322c4
+ceTaskUrl=http://localhost:9000/api/ce/task?id=75d0d715-a3c1-4c3a-bc41-69e69a9322c4

@@ -1,8 +1,5 @@
 <?php
-require_once 'conexion.php';
-require_once 'InventarioDTO.php';
-
-class InventarioDAO {
+    class InventarioDAO {
     public function registrar_inventario(InventarioDTO $inventarioDTO) {
         $conexion = Conexion::getConexion();
         $sql = "INSERT INTO INVENTARIO (ID_ITEM, UBICACION, CANTIDAD, ESPECIFICACIONES, FECHA_VENCIMIENTO, ESTADO)
@@ -36,7 +33,7 @@ class InventarioDAO {
     public function ver_inventario() {
         $conexion = Conexion::getConexion();
         try {
-            $sql = "SELECT ID_INVE, ID_ITEM, UBICACION, CANTIDAD, ESPECIFICACIONES, FECHA_VENCIMIENTO, ESTADO FROM INVENTARIO;";
+            $sql = "SELECT ID_ITEM, UBICACION, CANTIDAD, ESPECIFICACIONES, FECHA_VENCIMIENTO, ESTADO FROM INVENTARIO;";
             $stm = $conexion->prepare($sql);
             $stm->execute();
             return $stm->fetchAll();
@@ -48,7 +45,7 @@ class InventarioDAO {
     public function ver_inventario_inactivo() {
         $conexion = Conexion::getConexion();
         try {
-            $sql = "SELECT ID_INVE, ID_ITEM, UBICACION, CANTIDAD, ESPECIFICACIONES, FECHA_VENCIMIENTO, ESTADO FROM INVENTARIO WHERE ESTADO = 'NO DISPONIBLE';";
+            $sql = "SELECT ID_ITEM, UBICACION, CANTIDAD, ESPECIFICACIONES, FECHA_VENCIMIENTO, ESTADO FROM INVENTARIO WHERE ESTADO = 'NO DISPONIBLE';";
             $stm = $conexion->prepare($sql);
             $stm->execute();
             return $stm->fetchAll();
@@ -60,9 +57,9 @@ class InventarioDAO {
     public function conid($id_inve) {
         $conexion = Conexion::getConexion();
         try {
-            $sql = "SELECT * FROM INVENTARIO WHERE ID_INVE = ?";
+            $sql = "SELECT * FROM INVENTARIO WHERE ID_ITEM = ?";
             $stm = $conexion->prepare($sql);
-            $stm->bindParam(1, $id_inve);
+            $stm->bindParam(1, $id_item);
             $stm->execute();
             return $stm->fetch();
         } catch (Exception $e) {
@@ -73,15 +70,21 @@ class InventarioDAO {
     public function modificar(InventarioDTO $inventarioDTO) {
         $conexion = Conexion::getConexion();
         try {
-            $sql = "UPDATE INVENTARIO SET ID_ITEM=?, UBICACION=?, CANTIDAD=?, ESPECIFICACIONES=?, FECHA_VENCIMIENTO=?, ESTADO=? WHERE ID_INVE=?";
+            $sql = "UPDATE INVENTARIO SET ID_ITEM=?, UBICACION=?, CANTIDAD=?, ESPECIFICACIONES=?, FECHA_VENCIMIENTO=?, ESTADO=? WHERE ID_ITEM=?";
             $stm = $conexion->prepare($sql);
-            $stm->bindParam(1, $inventarioDTO->getID_ITEM());
-            $stm->bindParam(2, $inventarioDTO->getUBICACION());
-            $stm->bindParam(3, $inventarioDTO->getCANTIDAD());
-            $stm->bindParam(4, $inventarioDTO->getESPECIFICACIONES());
-            $stm->bindParam(5, $inventarioDTO->getFECHA_VENCIMIENTO());
-            $stm->bindParam(6, $inventarioDTO->getESTADO());
-            $stm->bindParam(7, $inventarioDTO->getID_INV());
+            $id_item = $inventarioDTO->getID_ITEM();
+            $Ubicacion = $inventarioDTO->getUBICACION();
+            $Cantidad = $inventarioDTO->getCANTIDAD();
+            $Especificaciones = $inventarioDTO->getESPECIFICACIONES();
+            $Fecha_Vencimiento = $inventarioDTO->getFECHA_VENCIMIENTO();
+            $Estado = $inventarioDTO->getESTADO();
+            $stm->bindParam(1, $id_item);
+            $stm->bindParam(2, $Ubicacion);
+            $stm->bindParam(3, $Cantidad);
+            $stm->bindParam(4, $Especificaciones);
+            $stm->bindParam(5, $Fecha_Vencimiento);
+            $stm->bindParam(6, $Estado);
+            $stm->bindParam(7, $id_item);
             $stm->execute();
         } catch (Exception $e) {
             return "Error en la actualización: " . $e->getMessage();
@@ -91,13 +94,12 @@ class InventarioDAO {
     public function eliminar(InventarioDTO $inventarioDTO) {
         $conexion = Conexion::getConexion();
         try {
-            $sql = "UPDATE INVENTARIO SET ESTADO='NO DISPONIBLE' WHERE ID_INVE=?";
+            $sql = "UPDATE INVENTARIO SET ESTADO='NO DISPONIBLE' WHERE ID_ITEM=?";
             $stm = $conexion->prepare($sql);
-            $stm->bindParam(1, $inventarioDTO->getID_INV());
+            $stm->bindParam(1, $inventarioDTO->getID_ITEM());
             $stm->execute();
         } catch (Exception $e) {
             return "Error en la eliminación: " . $e->getMessage();
         }
     }
 }
-?>
